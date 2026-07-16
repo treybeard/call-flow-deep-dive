@@ -1,0 +1,487 @@
+================================================================================
+SWITCHBOARD DEEP DIVE — Queue Column Analysis Only
+No schedule checks, no other categories
+================================================================================
+
+Total Switchboard calls (all files): 8,620
+Rows with Queue column data: 8,586
+Rows with empty Queue: 34
+
+================================================================================
+FILES PROCESSED
+================================================================================
+  doc_b696083cdb96_Switchboard-April.csv: 2,246 rows
+  doc_91b7d70ec942_Switchboard-May.csv: 3,117 rows
+  doc_73661aaf8493_Switchboard June.csv: 3,257 rows
+
+================================================================================
+UNIQUE QUEUE COLUMN VALUES (raw, as-is)
+================================================================================
+  [  4,233] ( 49.1%)  SWITCHBOARD
+  [  1,875] ( 21.8%)  SWITCHBOARD; LRS
+  [    625] (  7.3%)  SWITCHBOARD; ACAP PAs
+  [    402] (  4.7%)  SWITCHBOARD; MEMBERSHIP RECORDS
+  [    267] (  3.1%)  SWITCHBOARD; LEGAL SPEC
+  [    210] (  2.4%)  SWITCHBOARD; ACCOUNTING
+  [    149] (  1.7%)  SWITCHBOARD; DD LEGAL
+  [    113] (  1.3%)  SWITCHBOARD; AHC
+  [     77] (  0.9%)  SWITCHBOARD; FEE SEASON
+  [     74] (  0.9%)  SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS
+  [     56] (  0.6%)  SWITCHBOARD; ETHICS ATTY
+  [     49] (  0.6%)  SWITCHBOARD; WEBSITE
+  [     48] (  0.6%)  SWITCHBOARD; LRS SPANISH
+  [     44] (  0.5%)  SWITCHBOARD; ACAP PAs; ACAP ATTY
+  [     33] (  0.4%)  SWITCHBOARD; ACAP PAs; DD LEGAL
+  [     31] (  0.4%)  SWITCHBOARD; LEGAL SPEC; ACCOUNTING
+  [     25] (  0.3%)  SWITCHBOARD; MEMBERSHIP RECORDS; LEGAL SPEC
+  [     24] (  0.3%)  SWITCHBOARD; PRACTICE RESOURCE CENTER
+  [     22] (  0.3%)  SWITCHBOARD; ACAP PAs; LRS
+  [     17] (  0.2%)  SWITCHBOARD; MEMBERSHIP RECORDS; DD LEGAL
+  [     16] (  0.2%)  SWITCHBOARD; FEE SEASON; ACCOUNTING
+  [     13] (  0.2%)  SWITCHBOARD; SERVICE DESK
+  [     11] (  0.1%)  SWITCHBOARD; MEMBERSHIP RECORDS; ACCOUNTING
+  [      8] (  0.1%)  SWITCHBOARD; ETHICS SPT; ETHICS ATTY
+  [      7] (  0.1%)  SWITCHBOARD; LRS; ACAP PAs
+  [      7] (  0.1%)  SWITCHBOARD; ACCOUNTING; LEGAL SPEC
+  [      7] (  0.1%)  SWITCHBOARD; DD LEGAL; ACAP PAs
+  [      5] (  0.1%)  SWITCHBOARD; LEGAL SPEC; FEE SEASON; ACCOUNTING
+  [      5] (  0.1%)  SWITCHBOARD; ETHICS SPT
+  [      4] (  0.0%)  SWITCHBOARD; PRACTICE RESOURCE CENTER; DD LEGAL
+  [      4] (  0.0%)  SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS; PRACTICE RESOURCE CENTER
+  [      4] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; ACCOUNTING; LEGAL SPEC
+  [      4] (  0.0%)  SWITCHBOARD; ACCOUNTING; DD LEGAL
+  [      4] (  0.0%)  ACAP PAs; SWITCHBOARD
+  [      4] (  0.0%)  SWITCHBOARD; OPERATOR MIAMI
+  [      3] (  0.0%)  SWITCHBOARD; ACAP PAs; DD LEGAL; AHC
+  [      3] (  0.0%)  SWITCHBOARD; LRS; LRS SPANISH
+  [      3] (  0.0%)  SWITCHBOARD; LRS; DD LEGAL
+  [      3] (  0.0%)  SWITCHBOARD; LEGAL SPEC; MEMBERSHIP RECORDS
+  [      3] (  0.0%)  LRS; SWITCHBOARD
+  [      3] (  0.0%)  SWITCHBOARD; DD LEGAL; MEMBERSHIP RECORDS
+  [      3] (  0.0%)  SWITCHBOARD; WEBSITE; LEGAL SPEC
+  [      2] (  0.0%)  SWITCHBOARD; DD LEGAL; LRS
+  [      2] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; DD LEGAL; ACAP PAs; ACAP ATTY
+  [      2] (  0.0%)  SWITCHBOARD; AHC; MEMBERSHIP RECORDS
+  [      2] (  0.0%)  SWITCHBOARD; FEE SEASON; ACCOUNTING; LEGAL SPEC
+  [      2] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; ACAP PAs
+  [      2] (  0.0%)  SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS; DD LEGAL
+  [      2] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; ACAP PAs; ACAP ATTY
+  [      2] (  0.0%)  SWITCHBOARD; PRACTICE RESOURCE CENTER; ETHICS ATTY
+  [      2] (  0.0%)  SWITCHBOARD; OPERATOR ORLANDO
+  [      2] (  0.0%)  SWITCHBOARD; FEE SEASON; LEGAL SPEC
+  [      2] (  0.0%)  SWITCHBOARD; ACCOUNTING; SERVICE DESK
+  [      2] (  0.0%)  PRACTICE RESOURCE CENTER; SWITCHBOARD
+  [      2] (  0.0%)  SWITCHBOARD; ACAP Spanish
+  [      2] (  0.0%)  SWITCHBOARD; PRACTICE RESOURCE CENTER; ETHICS SPT; ETHICS ATTY
+  [      2] (  0.0%)  SWITCHBOARD; ACCOUNTING; FEE SEASON
+  [      2] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; AHC
+  [      1] (  0.0%)  SWITCHBOARD; LRS; ACAP PAs; AHC
+  [      1] (  0.0%)  SWITCHBOARD; FEE SEASON; PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  MEMBERSHIP RECORDS; LEGAL SPEC; WEBSITE; SWITCHBOARD; ETHICS SPT
+  [      1] (  0.0%)  SWITCHBOARD; LRS; AHC
+  [      1] (  0.0%)  SWITCHBOARD; AHC; ACCOUNTING; MEMBERSHIP RECORDS
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; PRACTICE RESOURCE CENTER; ETHICS ATTY
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; DD LEGAL; PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  SWITCHBOARD; LRS; LEGAL SPEC; ACCOUNTING
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS; ACAP PAs; DD LEGAL
+  [      1] (  0.0%)  LRS SPANISH; SWITCHBOARD
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; SERVICE DESK
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; WEBSITE
+  [      1] (  0.0%)  SWITCHBOARD; LRS; DD LEGAL; ACAP PAs
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; LRS
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; LEGAL SPEC; ACCOUNTING
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; ACAP PAs; ACAP ATTY
+  [      1] (  0.0%)  SWITCHBOARD; ACAP PAs; ETHICS ATTY
+  [      1] (  0.0%)  ETHICS ATTY; SWITCHBOARD
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; OPERATOR TAMPA
+  [      1] (  0.0%)  SWITCHBOARD; PRACTICE RESOURCE CENTER; AHC
+  [      1] (  0.0%)  SWITCHBOARD; SERVICE DESK; ACCOUNTING; MEMBERSHIP RECORDS
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; DD LEGAL; AHC
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; AHC
+  [      1] (  0.0%)  SWITCHBOARD; OPERATOR TAMPA
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; DD LEGAL; ETHICS ATTY
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; LEGAL SPEC; ETHICS ATTY
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; OPERATOR MIAMI
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; ACCOUNTING; MEMBERSHIP RECORDS; DD LEGAL
+  [      1] (  0.0%)  SWITCHBOARD; FEE SEASON; ACCOUNTING; ETHICS SPT; LEGAL SPEC
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; OPERATOR ORLANDO
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; LRS; OPERATOR ORLANDO
+  [      1] (  0.0%)  LEGAL SPEC; SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS
+  [      1] (  0.0%)  SWITCHBOARD; LRS SPANISH; ACAP PAs
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; ACAP PAs; DD LEGAL
+  [      1] (  0.0%)  ACAP PAs; SWITCHBOARD; ACCOUNTING
+  [      1] (  0.0%)  SWITCHBOARD; ACAP PAs; DD LEGAL; LRS
+  [      1] (  0.0%)  SWITCHBOARD; ETHICS SPT; AHC
+  [      1] (  0.0%)  SWITCHBOARD; PRACTICE RESOURCE CENTER; LEGAL SPEC
+  [      1] (  0.0%)  SWITCHBOARD; ETHICS ATTY; ETHICS SPT
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; FEE SEASON
+  [      1] (  0.0%)  SWITCHBOARD; WEBSITE; SERVICE DESK
+  [      1] (  0.0%)  SWITCHBOARD; LRS; ETHICS SPT; ETHICS ATTY
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; WEBSITE
+  [      1] (  0.0%)  SWITCHBOARD; ETHICS ATTY; AHC
+  [      1] (  0.0%)  SWITCHBOARD; MEMBERSHIP RECORDS; ETHICS ATTY
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; MEMBERSHIP RECORDS; ACCOUNTING
+  [      1] (  0.0%)  MEMBERSHIP RECORDS; SWITCHBOARD
+  [      1] (  0.0%)  ACAP PAs; SWITCHBOARD; ETHICS ATTY
+  [      1] (  0.0%)  ACCOUNTING; SWITCHBOARD
+  [      1] (  0.0%)  SWITCHBOARD; DD LEGAL; LEGAL SPEC; ACAP PAs
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; MEMBERSHIP RECORDS; LEGAL SPEC
+  [      1] (  0.0%)  SWITCHBOARD; LEGAL SPEC; ACCOUNTING; MEMBERSHIP RECORDS
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; LEGAL SPEC; MEMBERSHIP RECORDS
+  [      1] (  0.0%)  SWITCHBOARD; ACCOUNTING; PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  SWITCHBOARD; ACAP PAs; DD LEGAL; SERVICE DESK
+
+  Total unique Queue values: 114
+
+================================================================================
+UNIQUE CALL PATHS (semicolon → arrow format)
+================================================================================
+  [  4,233] ( 49.1%)  [1 steps]  SWITCHBOARD
+  [  1,875] ( 21.8%)  [2 steps]  SWITCHBOARD → LRS
+  [    625] (  7.3%)  [2 steps]  SWITCHBOARD → ACAP PAs
+  [    402] (  4.7%)  [2 steps]  SWITCHBOARD → MEMBERSHIP RECORDS
+  [    267] (  3.1%)  [2 steps]  SWITCHBOARD → LEGAL SPEC
+  [    210] (  2.4%)  [2 steps]  SWITCHBOARD → ACCOUNTING
+  [    149] (  1.7%)  [2 steps]  SWITCHBOARD → DD LEGAL
+  [    113] (  1.3%)  [2 steps]  SWITCHBOARD → AHC
+  [     77] (  0.9%)  [2 steps]  SWITCHBOARD → FEE SEASON
+  [     74] (  0.9%)  [3 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+  [     56] (  0.6%)  [2 steps]  SWITCHBOARD → ETHICS ATTY
+  [     49] (  0.6%)  [2 steps]  SWITCHBOARD → WEBSITE
+  [     48] (  0.6%)  [2 steps]  SWITCHBOARD → LRS SPANISH
+  [     44] (  0.5%)  [3 steps]  SWITCHBOARD → ACAP PAs → ACAP ATTY
+  [     33] (  0.4%)  [3 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL
+  [     31] (  0.4%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING
+  [     25] (  0.3%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC
+  [     24] (  0.3%)  [2 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER
+  [     22] (  0.3%)  [3 steps]  SWITCHBOARD → ACAP PAs → LRS
+  [     17] (  0.2%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL
+  [     16] (  0.2%)  [3 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING
+  [     13] (  0.2%)  [2 steps]  SWITCHBOARD → SERVICE DESK
+  [     11] (  0.1%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING
+  [      8] (  0.1%)  [3 steps]  SWITCHBOARD → ETHICS SPT → ETHICS ATTY
+  [      7] (  0.1%)  [3 steps]  SWITCHBOARD → LRS → ACAP PAs
+  [      7] (  0.1%)  [3 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC
+  [      7] (  0.1%)  [3 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs
+  [      5] (  0.1%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → FEE SEASON → ACCOUNTING
+  [      5] (  0.1%)  [2 steps]  SWITCHBOARD → ETHICS SPT
+  [      4] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → DD LEGAL
+  [      4] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+  [      4] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING → LEGAL SPEC
+  [      4] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → DD LEGAL
+  [      4] (  0.0%)  [2 steps]  ACAP PAs → SWITCHBOARD
+  [      4] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR MIAMI
+  [      3] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → AHC
+  [      3] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → LRS SPANISH
+  [      3] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → DD LEGAL
+  [      3] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → MEMBERSHIP RECORDS
+  [      3] (  0.0%)  [2 steps]  LRS → SWITCHBOARD
+  [      3] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → MEMBERSHIP RECORDS
+  [      3] (  0.0%)  [3 steps]  SWITCHBOARD → WEBSITE → LEGAL SPEC
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → LRS
+  [      2] (  0.0%)  [5 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → ACAP PAs → ACAP ATTY
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → AHC → MEMBERSHIP RECORDS
+  [      2] (  0.0%)  [4 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING → LEGAL SPEC
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs
+  [      2] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → DD LEGAL
+  [      2] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs → ACAP ATTY
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS ATTY
+  [      2] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR ORLANDO
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → FEE SEASON → LEGAL SPEC
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → SERVICE DESK
+  [      2] (  0.0%)  [2 steps]  PRACTICE RESOURCE CENTER → SWITCHBOARD
+  [      2] (  0.0%)  [2 steps]  SWITCHBOARD → ACAP Spanish
+  [      2] (  0.0%)  [4 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS SPT → ETHICS ATTY
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → FEE SEASON
+  [      2] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → AHC
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → ACAP PAs → AHC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → FEE SEASON → PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  [5 steps]  MEMBERSHIP RECORDS → LEGAL SPEC → WEBSITE → SWITCHBOARD → ETHICS SPT
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → AHC
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → AHC → ACCOUNTING → MEMBERSHIP RECORDS
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER → ETHICS ATTY
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → DD LEGAL → PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → LEGAL SPEC → ACCOUNTING
+  [      1] (  0.0%)  [5 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → ACAP PAs → DD LEGAL
+  [      1] (  0.0%)  [2 steps]  LRS SPANISH → SWITCHBOARD
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → SERVICE DESK
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → WEBSITE
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → DD LEGAL → ACAP PAs
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LRS
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC → ACCOUNTING
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs → ACAP ATTY
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACAP PAs → ETHICS ATTY
+  [      1] (  0.0%)  [2 steps]  ETHICS ATTY → SWITCHBOARD
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR TAMPA
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → AHC
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → SERVICE DESK → ACCOUNTING → MEMBERSHIP RECORDS
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → AHC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → AHC
+  [      1] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR TAMPA
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → ETHICS ATTY
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC → ETHICS ATTY
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR MIAMI
+  [      1] (  0.0%)  [5 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING → MEMBERSHIP RECORDS → DD LEGAL
+  [      1] (  0.0%)  [5 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING → ETHICS SPT → LEGAL SPEC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR ORLANDO
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → LRS → OPERATOR ORLANDO
+  [      1] (  0.0%)  [4 steps]  LEGAL SPEC → SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS SPANISH → ACAP PAs
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs → DD LEGAL
+  [      1] (  0.0%)  [3 steps]  ACAP PAs → SWITCHBOARD → ACCOUNTING
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → LRS
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS SPT → AHC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → LEGAL SPEC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS ATTY → ETHICS SPT
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → FEE SEASON
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → WEBSITE → SERVICE DESK
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → ETHICS SPT → ETHICS ATTY
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → WEBSITE
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS ATTY → AHC
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ETHICS ATTY
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → MEMBERSHIP RECORDS → ACCOUNTING
+  [      1] (  0.0%)  [2 steps]  MEMBERSHIP RECORDS → SWITCHBOARD
+  [      1] (  0.0%)  [3 steps]  ACAP PAs → SWITCHBOARD → ETHICS ATTY
+  [      1] (  0.0%)  [2 steps]  ACCOUNTING → SWITCHBOARD
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → LEGAL SPEC → ACAP PAs
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → LEGAL SPEC
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING → MEMBERSHIP RECORDS
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC → MEMBERSHIP RECORDS
+  [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → PRACTICE RESOURCE CENTER
+  [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → SERVICE DESK
+
+  Total unique paths: 114
+
+================================================================================
+TOP INDIVIDUAL QUEUE SEGMENTS
+================================================================================
+  [  8,586] ( 99.6%)  SWITCHBOARD
+  [  1,923] ( 22.3%)  LRS
+  [    763] (  8.9%)  ACAP PAs
+  [    576] (  6.7%)  MEMBERSHIP RECORDS
+  [    391] (  4.5%)  ACCOUNTING
+  [    365] (  4.2%)  LEGAL SPEC
+  [    244] (  2.8%)  DD LEGAL
+  [    128] (  1.5%)  AHC
+  [    107] (  1.2%)  FEE SEASON
+  [     78] (  0.9%)  ETHICS ATTY
+  [     56] (  0.6%)  WEBSITE
+  [     53] (  0.6%)  LRS SPANISH
+  [     49] (  0.6%)  ACAP ATTY
+  [     45] (  0.5%)  PRACTICE RESOURCE CENTER
+  [     20] (  0.2%)  ETHICS SPT
+  [     19] (  0.2%)  SERVICE DESK
+  [      5] (  0.1%)  OPERATOR MIAMI
+  [      4] (  0.0%)  OPERATOR ORLANDO
+  [      2] (  0.0%)  OPERATOR TAMPA
+  [      2] (  0.0%)  ACAP Spanish
+
+================================================================================
+PER-FILE CALL PATH BREAKDOWN
+================================================================================
+
+--- doc_b696083cdb96_Switchboard-April.csv (2,220 calls with queue data) ---
+    [  1,139] ( 51.3%)  [1 steps]  SWITCHBOARD
+    [    492] ( 22.2%)  [2 steps]  SWITCHBOARD → LRS
+    [    152] (  6.8%)  [2 steps]  SWITCHBOARD → ACAP PAs
+    [    103] (  4.6%)  [2 steps]  SWITCHBOARD → MEMBERSHIP RECORDS
+    [     64] (  2.9%)  [2 steps]  SWITCHBOARD → LEGAL SPEC
+    [     38] (  1.7%)  [2 steps]  SWITCHBOARD → AHC
+    [     37] (  1.7%)  [2 steps]  SWITCHBOARD → ACCOUNTING
+    [     37] (  1.7%)  [2 steps]  SWITCHBOARD → DD LEGAL
+    [     18] (  0.8%)  [2 steps]  SWITCHBOARD → LRS SPANISH
+    [     15] (  0.7%)  [3 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+    [     13] (  0.6%)  [2 steps]  SWITCHBOARD → ETHICS ATTY
+    [      9] (  0.4%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC
+    [      9] (  0.4%)  [2 steps]  SWITCHBOARD → FEE SEASON
+    [      8] (  0.4%)  [3 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL
+    [      7] (  0.3%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING
+    [      5] (  0.2%)  [3 steps]  SWITCHBOARD → ACAP PAs → ACAP ATTY
+    [      5] (  0.2%)  [2 steps]  SWITCHBOARD → WEBSITE
+    [      5] (  0.2%)  [2 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER
+    [      4] (  0.2%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL
+    [      4] (  0.2%)  [3 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING
+    [      3] (  0.1%)  [2 steps]  SWITCHBOARD → SERVICE DESK
+    [      3] (  0.1%)  [3 steps]  SWITCHBOARD → LRS → ACAP PAs
+    [      3] (  0.1%)  [3 steps]  SWITCHBOARD → ETHICS SPT → ETHICS ATTY
+    [      3] (  0.1%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → FEE SEASON → ACCOUNTING
+    [      3] (  0.1%)  [3 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC
+    [      2] (  0.1%)  [5 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → ACAP PAs → ACAP ATTY
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → ACAP PAs → LRS
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → LRS → DD LEGAL
+    [      2] (  0.1%)  [2 steps]  SWITCHBOARD → ETHICS SPT
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING → LEGAL SPEC
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → ACAP PAs → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → LRS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → FEE SEASON → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [5 steps]  MEMBERSHIP RECORDS → LEGAL SPEC → WEBSITE → SWITCHBOARD → ETHICS SPT
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → DD LEGAL
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → LRS SPANISH
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → AHC → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → AHC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → AHC → ACCOUNTING → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER → ETHICS ATTY
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING → LEGAL SPEC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → DD LEGAL → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → LEGAL SPEC → ACCOUNTING
+    [      1] (  0.0%)  [5 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → ACAP PAs → DD LEGAL
+    [      1] (  0.0%)  [2 steps]  LRS SPANISH → SWITCHBOARD
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → SERVICE DESK
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → DD LEGAL
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → WEBSITE
+    [      1] (  0.0%)  [2 steps]  ACAP PAs → SWITCHBOARD
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → DD LEGAL → ACAP PAs
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LRS
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC → ACCOUNTING
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs → ACAP ATTY
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACAP PAs → ETHICS ATTY
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → DD LEGAL
+
+--- doc_91b7d70ec942_Switchboard-May.csv (3,114 calls with queue data) ---
+    [  1,577] ( 50.6%)  [1 steps]  SWITCHBOARD
+    [    675] ( 21.7%)  [2 steps]  SWITCHBOARD → LRS
+    [    226] (  7.3%)  [2 steps]  SWITCHBOARD → ACAP PAs
+    [    134] (  4.3%)  [2 steps]  SWITCHBOARD → MEMBERSHIP RECORDS
+    [    107] (  3.4%)  [2 steps]  SWITCHBOARD → LEGAL SPEC
+    [     58] (  1.9%)  [2 steps]  SWITCHBOARD → ACCOUNTING
+    [     47] (  1.5%)  [2 steps]  SWITCHBOARD → DD LEGAL
+    [     28] (  0.9%)  [3 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+    [     27] (  0.9%)  [2 steps]  SWITCHBOARD → AHC
+    [     25] (  0.8%)  [2 steps]  SWITCHBOARD → FEE SEASON
+    [     21] (  0.7%)  [2 steps]  SWITCHBOARD → ETHICS ATTY
+    [     19] (  0.6%)  [3 steps]  SWITCHBOARD → ACAP PAs → ACAP ATTY
+    [     16] (  0.5%)  [2 steps]  SWITCHBOARD → WEBSITE
+    [     14] (  0.4%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING
+    [     12] (  0.4%)  [2 steps]  SWITCHBOARD → LRS SPANISH
+    [     11] (  0.4%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC
+    [     10] (  0.3%)  [3 steps]  SWITCHBOARD → ACAP PAs → LRS
+    [      9] (  0.3%)  [3 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL
+    [      9] (  0.3%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL
+    [      7] (  0.2%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING
+    [      6] (  0.2%)  [3 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING
+    [      4] (  0.1%)  [2 steps]  SWITCHBOARD → SERVICE DESK
+    [      4] (  0.1%)  [3 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs
+    [      4] (  0.1%)  [2 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER
+    [      3] (  0.1%)  [3 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC
+    [      3] (  0.1%)  [2 steps]  SWITCHBOARD → OPERATOR MIAMI
+    [      3] (  0.1%)  [3 steps]  SWITCHBOARD → ACCOUNTING → DD LEGAL
+    [      2] (  0.1%)  [2 steps]  ACAP PAs → SWITCHBOARD
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING → LEGAL SPEC
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → DD LEGAL
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs → ACAP ATTY
+    [      2] (  0.1%)  [2 steps]  LRS → SWITCHBOARD
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → LRS → ACAP PAs
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → FEE SEASON → ACCOUNTING
+    [      2] (  0.1%)  [2 steps]  SWITCHBOARD → ETHICS SPT
+    [      1] (  0.0%)  [2 steps]  ETHICS ATTY → SWITCHBOARD
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → LRS SPANISH
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR TAMPA
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → AHC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → SERVICE DESK → ACCOUNTING → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → LRS
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS ATTY
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR ORLANDO
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR TAMPA
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → FEE SEASON → LEGAL SPEC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL → ETHICS ATTY
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC → ETHICS ATTY
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR MIAMI
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → DD LEGAL
+    [      1] (  0.0%)  [5 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING → MEMBERSHIP RECORDS → DD LEGAL
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [5 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING → ETHICS SPT → LEGAL SPEC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → OPERATOR ORLANDO
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → LRS → OPERATOR ORLANDO
+    [      1] (  0.0%)  [4 steps]  LEGAL SPEC → SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS SPANISH → ACAP PAs
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACAP PAs → DD LEGAL
+    [      1] (  0.0%)  [3 steps]  ACAP PAs → SWITCHBOARD → ACCOUNTING
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → LRS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS SPT → AHC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING → LEGAL SPEC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → LEGAL SPEC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS ATTY → ETHICS SPT
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → SERVICE DESK
+    [      1] (  0.0%)  [2 steps]  PRACTICE RESOURCE CENTER → SWITCHBOARD
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → ACAP Spanish
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → FEE SEASON
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS SPT → ETHICS ATTY
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → WEBSITE → LEGAL SPEC
+
+--- doc_73661aaf8493_Switchboard June.csv (3,252 calls with queue data) ---
+    [  1,517] ( 46.6%)  [1 steps]  SWITCHBOARD
+    [    708] ( 21.8%)  [2 steps]  SWITCHBOARD → LRS
+    [    247] (  7.6%)  [2 steps]  SWITCHBOARD → ACAP PAs
+    [    165] (  5.1%)  [2 steps]  SWITCHBOARD → MEMBERSHIP RECORDS
+    [    115] (  3.5%)  [2 steps]  SWITCHBOARD → ACCOUNTING
+    [     96] (  3.0%)  [2 steps]  SWITCHBOARD → LEGAL SPEC
+    [     65] (  2.0%)  [2 steps]  SWITCHBOARD → DD LEGAL
+    [     48] (  1.5%)  [2 steps]  SWITCHBOARD → AHC
+    [     43] (  1.3%)  [2 steps]  SWITCHBOARD → FEE SEASON
+    [     31] (  1.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS
+    [     28] (  0.9%)  [2 steps]  SWITCHBOARD → WEBSITE
+    [     22] (  0.7%)  [2 steps]  SWITCHBOARD → ETHICS ATTY
+    [     20] (  0.6%)  [3 steps]  SWITCHBOARD → ACAP PAs → ACAP ATTY
+    [     18] (  0.6%)  [2 steps]  SWITCHBOARD → LRS SPANISH
+    [     16] (  0.5%)  [3 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL
+    [     15] (  0.5%)  [2 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER
+    [     10] (  0.3%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING
+    [     10] (  0.3%)  [3 steps]  SWITCHBOARD → ACAP PAs → LRS
+    [      6] (  0.2%)  [3 steps]  SWITCHBOARD → FEE SEASON → ACCOUNTING
+    [      6] (  0.2%)  [2 steps]  SWITCHBOARD → SERVICE DESK
+    [      5] (  0.2%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → LEGAL SPEC
+    [      5] (  0.2%)  [3 steps]  SWITCHBOARD → ETHICS SPT → ETHICS ATTY
+    [      4] (  0.1%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ACCOUNTING
+    [      4] (  0.1%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → DD LEGAL
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → LEGAL SPEC → MEMBERSHIP RECORDS
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → PRACTICE RESOURCE CENTER
+    [      2] (  0.1%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → AHC
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → DD LEGAL → MEMBERSHIP RECORDS
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → LRS → ACAP PAs
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → ACCOUNTING → FEE SEASON
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → WEBSITE → LEGAL SPEC
+    [      2] (  0.1%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → WEBSITE → SERVICE DESK
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → DD LEGAL → ACAP PAs
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LRS → ETHICS SPT → ETHICS ATTY
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → WEBSITE
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR ORLANDO
+    [      1] (  0.0%)  [2 steps]  ACAP PAs → SWITCHBOARD
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → DD LEGAL
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ETHICS ATTY → AHC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → AHC → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → ACAP Spanish
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → SERVICE DESK
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → MEMBERSHIP RECORDS → ETHICS ATTY
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS ATTY
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → MEMBERSHIP RECORDS → ACCOUNTING
+    [      1] (  0.0%)  [2 steps]  MEMBERSHIP RECORDS → SWITCHBOARD
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → LRS → LRS SPANISH
+    [      1] (  0.0%)  [3 steps]  ACAP PAs → SWITCHBOARD → ETHICS ATTY
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → ETHICS SPT → ETHICS ATTY
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → OPERATOR MIAMI
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → FEE SEASON → LEGAL SPEC
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC
+    [      1] (  0.0%)  [2 steps]  ACCOUNTING → SWITCHBOARD
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → DD LEGAL → LEGAL SPEC → ACAP PAs
+    [      1] (  0.0%)  [2 steps]  LRS → SWITCHBOARD
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → MEMBERSHIP RECORDS → LEGAL SPEC
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → LEGAL SPEC → ACCOUNTING → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACCOUNTING → LEGAL SPEC → MEMBERSHIP RECORDS
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → ACCOUNTING → PRACTICE RESOURCE CENTER
+    [      1] (  0.0%)  [2 steps]  SWITCHBOARD → ETHICS SPT
+    [      1] (  0.0%)  [2 steps]  PRACTICE RESOURCE CENTER → SWITCHBOARD
+    [      1] (  0.0%)  [3 steps]  SWITCHBOARD → PRACTICE RESOURCE CENTER → DD LEGAL
+    [      1] (  0.0%)  [4 steps]  SWITCHBOARD → ACAP PAs → DD LEGAL → SERVICE DESK

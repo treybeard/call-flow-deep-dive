@@ -1,0 +1,4 @@
+Month,Avg Duration (s),P50 Duration (s),P95 Duration (s),Max Duration (s),Valid Samples
+April,384.0,311.0,940.0,3359.0,2466
+May,402.0,331.0,979.0,3633.0,3429
+June,408.0,318.0,1044.0,3326.0,3561

@@ -1,0 +1,345 @@
+================================================================================
+DEEP-DIVE ANALYSIS: NON-ATTY
+Period: April - June 2026
+Total calls: 9,457
+Generated: 2026-07-13 14:04
+================================================================================
+
+COMPLETE CALL FLOW PATHS (without Schedule Checks)
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv (3,561 calls) ---
+  Calls with flow data: 3,561
+  After stripping 'schedule check' segments: 3,558 (99.9%) 3 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [7 steps] 903 calls (25.4%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue;Lawyer Referral Service English In-Queue Flow
+    2. [5 steps] 418 calls (11.7%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    3. [6 steps] 223 calls (6.3%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 4
+    4. [6 steps] 206 calls (5.8%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue
+    5. [6 steps] 203 calls (5.7%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 2
+    6. [5 steps] 187 calls (5.3%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    7. [5 steps] 171 calls (4.8%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu
+    8. [3 steps] 161 calls (4.5%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu
+    9. [6 steps] 157 calls (4.4%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 5
+    10. [6 steps] 98 calls (2.8%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 1
+    11. [3 steps] 75 calls (2.1%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    12. [6 steps] 72 calls (2.0%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow;Lawyer Referral Service English In-Queue Flow
+    13. [3 steps] 63 calls (1.8%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    14. [4 steps] 46 calls (1.3%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    15. [6 steps] 41 calls (1.2%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow;ACAP Attorney In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 3,066 calls (86.1%)
+    Accounting Menu Flow: 153 calls (4.3%)
+    UPL Menu: 89 calls (2.5%)
+    LSE Menu: 71 calls (2.0%)
+    DD Legal Menu Flow: 51 calls (1.4%)
+    ACAP Menu: 48 calls (1.3%)
+    LRS Main Menu (Spanish or English): 31 calls (0.9%)
+    Client Security Fund: 18 calls (0.5%)
+    Bar Examiners Menu: 9 calls (0.3%)
+    Ethics Menu: 9 calls (0.3%)
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv (3,429 calls) ---
+  Calls with flow data: 3,429
+  After stripping 'schedule check' segments: 3,427 (99.9%) 2 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [7 steps] 914 calls (26.7%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue;Lawyer Referral Service English In-Queue Flow
+    2. [5 steps] 413 calls (12.0%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    3. [6 steps] 201 calls (5.9%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue
+    4. [6 steps] 195 calls (5.7%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 2
+    5. [6 steps] 190 calls (5.5%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 4
+    6. [5 steps] 187 calls (5.5%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    7. [5 steps] 169 calls (4.9%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu
+    8. [3 steps] 154 calls (4.5%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu
+    9. [6 steps] 143 calls (4.2%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 5
+    10. [6 steps] 130 calls (3.8%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 1
+    11. [6 steps] 70 calls (2.0%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow;Lawyer Referral Service English In-Queue Flow
+    12. [4 steps] 54 calls (1.6%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    13. [3 steps] 53 calls (1.5%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    14. [3 steps] 49 calls (1.4%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    15. [3 steps] 47 calls (1.4%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 3,025 calls (88.2%)
+    Accounting Menu Flow: 97 calls (2.8%)
+    UPL Menu: 68 calls (2.0%)
+    ACAP Menu: 65 calls (1.9%)
+    LSE Menu: 61 calls (1.8%)
+    DD Legal Menu Flow: 61 calls (1.8%)
+    LRS Main Menu (Spanish or English): 19 calls (0.6%)
+    Client Security Fund: 14 calls (0.4%)
+    Bar Examiners Menu: 6 calls (0.2%)
+    Ethics Menu: 6 calls (0.2%)
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv (2,467 calls) ---
+  Calls with flow data: 2,467
+  After stripping 'schedule check' segments: 2,466 (100.0%) 1 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [7 steps] 640 calls (25.9%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue;Lawyer Referral Service English In-Queue Flow
+    2. [5 steps] 298 calls (12.1%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    3. [6 steps] 168 calls (6.8%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 4
+    4. [6 steps] 148 calls (6.0%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 2
+    5. [5 steps] 138 calls (5.6%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu
+    6. [6 steps] 131 calls (5.3%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Direct to Queue
+    7. [5 steps] 124 calls (5.0%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    8. [3 steps] 114 calls (4.6%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu
+    9. [6 steps] 100 calls (4.1%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 5
+    10. [6 steps] 87 calls (3.5%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS English Main Menu;LRS English Main Menu Option 1
+    11. [3 steps] 67 calls (2.7%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    12. [3 steps] 38 calls (1.5%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    13. [6 steps] 34 calls (1.4%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow;Lawyer Referral Service English In-Queue Flow
+    14. [6 steps] 31 calls (1.3%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow;ACAP Attorney In-Queue Flow
+    15. [4 steps] 26 calls (1.1%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 2,164 calls (87.7%)
+    Accounting Menu Flow: 80 calls (3.2%)
+    UPL Menu: 76 calls (3.1%)
+    LSE Menu: 46 calls (1.9%)
+    ACAP Menu: 36 calls (1.5%)
+    DD Legal Menu Flow: 30 calls (1.2%)
+    LRS Main Menu (Spanish or English): 11 calls (0.4%)
+    Bar Examiners Menu: 10 calls (0.4%)
+    Client Security Fund: 8 calls (0.3%)
+    Ethics Menu: 3 calls (0.1%)
+
+ABANDONMENT PATTERNS
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Abandoned: 325 (9.1%)
+  Not abandoned: 3,236 (90.9%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue; Lawyer Referral Service English In-Queue Flow: 210 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 31 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow: 19 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow; Lawyer Referral Service English In-Queue Flow: 18 calls
+    Accounting Menu Schedule Check; Accounting Menu Flow; Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue; Lawyer Referral Service English In-Queue Flow: 6 calls
+
+  Average time to abandon: 167s (2.8m)
+  Min time to abandon: 0s
+  Max time to abandon: 1128s (18.8m)
+  95th percentile: 431s (7.2m)
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Abandoned: 207 (6.0%)
+  Not abandoned: 3,222 (94.0%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue; Lawyer Referral Service English In-Queue Flow: 150 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 20 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow; Lawyer Referral Service English In-Queue Flow: 10 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow: 9 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow; Lawyer Referral Service English In-Queue Flow: 5 calls
+
+  Average time to abandon: 156s (2.6m)
+  Min time to abandon: 1s
+  Max time to abandon: 557s (9.3m)
+  95th percentile: 407s (6.8m)
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Abandoned: 165 (6.7%)
+  Not abandoned: 2,302 (93.3%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue; Lawyer Referral Service English In-Queue Flow: 108 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 22 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow: 9 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow; Lawyer Referral Service English In-Queue Flow: 3 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow; Lawyer Referral Service English In-Queue Flow: 3 calls
+
+  Average time to abandon: 116s (1.9m)
+  Min time to abandon: 1s
+  Max time to abandon: 588s (9.8m)
+  95th percentile: 331s (5.5m)
+
+IVR PATTERNS
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Calls with IVR data: 3,561
+  IVR segments: mean=6.7, min=4, max=24
+  Total IVR time: mean=131s, max=512s
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Calls with IVR data: 3,429
+  IVR segments: mean=6.6, min=4, max=20
+  Total IVR time: mean=131s, max=437s
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Calls with IVR data: 2,467
+  IVR segments: mean=6.6, min=4, max=21
+  Total IVR time: mean=133s, max=516s
+
+QUEUE BEHAVIOR
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Calls in queue: 2,205
+  Queue segments: mean=1.2
+  Total queue time: mean=110s, max=1128s
+  P95 queue time: 446s
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Calls in queue: 2,119
+  Queue segments: mean=1.2
+  Total queue time: mean=95s, max=953s
+  P95 queue time: 395s
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Calls in queue: 1,476
+  Queue segments: mean=1.2
+  Total queue time: mean=86s, max=5130s
+  P95 queue time: 334s
+
+TRANSFER PATTERNS
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Blind transferred: 616 (17.3%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 2,945 (82.7%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Blind transferred: 570 (16.6%)
+  Consult transferred: 1 (0.0%)
+  Not transferred: 2,859 (83.4%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Blind transferred: 359 (14.6%)
+  Consult transferred: 2 (0.1%)
+  Not transferred: 2,106 (85.4%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+TIMING PATTERNS (Hourly Distribution)
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Hourly distribution:
+    07:xx     16 calls  █
+    08:xx    173 calls  ██████████████
+    09:xx    338 calls  ████████████████████████████
+    10:xx    436 calls  ████████████████████████████████████
+    11:xx    479 calls  ████████████████████████████████████████
+    12:xx    402 calls  █████████████████████████████████
+    13:xx    436 calls  ████████████████████████████████████
+    14:xx    427 calls  ███████████████████████████████████
+    15:xx    414 calls  ██████████████████████████████████
+    16:xx    362 calls  ██████████████████████████████
+    17:xx     78 calls  ██████
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Hourly distribution:
+    07:xx     18 calls  █
+    08:xx    173 calls  ███████████████
+    09:xx    342 calls  ██████████████████████████████
+    10:xx    422 calls  ██████████████████████████████████████
+    11:xx    403 calls  ████████████████████████████████████
+    12:xx    391 calls  ███████████████████████████████████
+    13:xx    437 calls  ███████████████████████████████████████
+    14:xx    443 calls  ████████████████████████████████████████
+    15:xx    398 calls  ███████████████████████████████████
+    16:xx    355 calls  ████████████████████████████████
+    17:xx     47 calls  ████
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Hourly distribution:
+    07:xx     12 calls  █
+    08:xx     77 calls  █████████
+    09:xx    250 calls  ███████████████████████████████
+    10:xx    293 calls  █████████████████████████████████████
+    11:xx    288 calls  ████████████████████████████████████
+    12:xx    308 calls  ██████████████████████████████████████
+    13:xx    302 calls  ██████████████████████████████████████
+    14:xx    316 calls  ████████████████████████████████████████
+    15:xx    299 calls  █████████████████████████████████████
+    16:xx    262 calls  █████████████████████████████████
+    17:xx     60 calls  ███████
+
+CALL OUTCOMES & DISCONNECT TYPES
+================================================================================
+
+--- doc_14b5e25c2c25_Non-ATTY June.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 3,561 (100.0%)
+
+  Disconnect types:
+    External: 1,843 calls (51.8%)
+    Agent: 900 calls (25.3%)
+    System: 818 calls (23.0%)
+
+--- doc_65dfd2d8d7f7_Non-ATTY May.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 3,429 (100.0%)
+
+  Disconnect types:
+    External: 1,714 calls (50.0%)
+    Agent: 943 calls (27.5%)
+    System: 772 calls (22.5%)
+
+--- doc_d98d6ef6429d_Non-ATTY April.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 2,467 (100.0%)
+
+  Disconnect types:
+    External: 1,276 calls (51.7%)
+    System: 597 calls (24.2%)
+    Agent: 594 calls (24.1%)

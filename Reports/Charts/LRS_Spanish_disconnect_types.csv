@@ -1,0 +1,31 @@
+Disconnect Type,April,May,June,Total
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,475,589,596,1660
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,332,435,431,1198
+AllFlow_1,190,218,258,666
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue,112,128,153,393
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue,64,83,100,247
+Orlando Switchboard Schedule Check; Orlando Branch Menu; Orlando Branch Spanish Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,8,20,11,39
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; ACAP Menu Schedule Check; ACAP Menu; ACAP PA Spanish Menu; ACAP PA Spanish Direct to Queue; ACAP PA Spanish Queue Number Check; ACAP PAs Spanish In-Queue Flow,5,11,14,30
+Miami Switchboard Schedule Check; Miami Branch Menu; Miami Branch Spanish Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,4,6,6,16
+Communications Direct to Group; LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,2,5,6,13
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; ACAP Menu Schedule Check; ACAP Menu; ACAP PA Spanish Menu; ACAP PA Spanish Direct to Queue; ACAP PA Spanish Queue Number Check,5,2,2,9
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 1; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,2,4,3,9
+ACAP Menu Schedule Check; ACAP PA Queue 8-9 5-530; Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,4,4,0,8
+Orlando Switchboard Schedule Check; Orlando Branch Menu; Orlando Branch Spanish Menu; LRS Spanish Direct to Queue,1,2,4,7
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; DD Legal Schedule Check; DD Legal Menu Flow; DD Legal Direct to Queue; DD Legal Queue Number Check; Division Director Legal In-Queue Flow,1,3,3,7
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 2; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,1,4,2,7
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; ACAP Menu Schedule Check; ACAP Menu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow,2,2,3,7
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 4; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,1,2,3,6
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,1,4,1,6
+Accounting Menu Schedule Check; Accounting Menu Flow; Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,0,1,3,4
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Bar Switchboard Schedule Check,2,0,1,3
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Bar Switchboard Holiday Flow,3,0,0,3
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; ACAP Menu Schedule Check; ACAP Menu; ACAP PA Spanish Menu; ACAP PA Spanish Direct to Queue; ACAP PA Spanish Queue Number Check; ACAP PAs Spanish In-Queue Flow,2,0,1,3
+Ft. Lauderdale Switchboard Schedule Check; Ft. Lauderdale Branch Menu; Ft. Lauderdale Branch Spanish Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,0,2,1,3
+Orlando Switchboard Schedule Check; Orlando Branch Menu; Orlando Branch Spanish Menu; LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,0,1,2,3
+Miami Switchboard Schedule Check; Miami Branch Menu; Miami Branch Spanish Menu; LRS Spanish Direct to Queue,0,0,3,3
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; Bar Switchboard Schedule Check,1,0,1,2
+Orlando Switchboard Schedule Check; Orlando Branch Menu; Operator - Orlando; LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,2,0,0,2
+LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 5; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,1,0,1,2
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow; Accounting Menu Schedule Check; Accounting Menu Flow; Membership Records Direct to Queue; Membership Records In-Queue Call Flow,0,1,1,2
+Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow,0,1,1,2

@@ -1,0 +1,271 @@
+================================================================================
+DEEP-DIVE ANALYSIS: BAR EXAMINERS
+Period: April - June 2026
+Total calls: 476
+Generated: 2026-07-13 14:04
+================================================================================
+
+COMPLETE CALL FLOW PATHS (without Schedule Checks)
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv (143 calls) ---
+  Calls with flow data: 143
+  After stripping 'schedule check' segments: 143 (100.0%) 0 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [1 steps] 137 calls (95.8%)
+       Bar Examiners Menu
+    2. [3 steps] 1 calls (0.7%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    3. [5 steps] 1 calls (0.7%)
+       Bar Examiners Menu;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    4. [3 steps] 1 calls (0.7%)
+       Bar Examiners Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    5. [3 steps] 1 calls (0.7%)
+       Bar Examiners Menu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    6. [4 steps] 1 calls (0.7%)
+       Bar Examiners Menu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow;Lawyer Referral Service English In-Queue Flow
+    7. [5 steps] 1 calls (0.7%)
+       Bar Examiners Menu;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Examiners Menu: 142 calls (99.3%)
+    UPL Menu: 1 calls (0.7%)
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv (179 calls) ---
+  Calls with flow data: 179
+  After stripping 'schedule check' segments: 178 (99.4%) 1 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [1 steps] 166 calls (92.7%)
+       Bar Examiners Menu
+    2. [3 steps] 4 calls (2.2%)
+       Bar Examiners Menu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    3. [3 steps] 2 calls (1.1%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    4. [3 steps] 1 calls (0.6%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    5. [3 steps] 1 calls (0.6%)
+       Bar Examiners Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    6. [6 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow;Division Director Legal In-Queue Flow
+    7. [5 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    8. [3 steps] 1 calls (0.6%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow
+    9. [4 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow;Lawyer Referral Service English In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Examiners Menu: 174 calls (97.2%)
+    UPL Menu: 2 calls (1.1%)
+    LSE Menu: 1 calls (0.6%)
+    Accounting Menu Flow: 1 calls (0.6%)
+
+--- doc_c848269b044c_Bar Examiners April.csv (154 calls) ---
+  Calls with flow data: 154
+  After stripping 'schedule check' segments: 154 (100.0%) 0 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [1 steps] 145 calls (94.2%)
+       Bar Examiners Menu
+    2. [3 steps] 2 calls (1.3%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    3. [3 steps] 2 calls (1.3%)
+       Bar Examiners Menu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    4. [5 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    5. [5 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu
+    6. [5 steps] 1 calls (0.6%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow;Operator - Tampa Final
+    7. [5 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    8. [5 steps] 1 calls (0.6%)
+       Bar Examiners Menu;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Examiners Menu: 151 calls (98.1%)
+    ACAP Menu: 2 calls (1.3%)
+    DD Legal Menu Flow: 1 calls (0.6%)
+
+ABANDONMENT PATTERNS
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Abandoned: 1 (0.7%)
+  Not abandoned: 142 (99.3%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 1 calls
+
+  Average time to abandon: 286s (4.8m)
+  Min time to abandon: 286s
+  Max time to abandon: 286s (4.8m)
+  95th percentile: 286s (4.8m)
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Abandoned: 2 (1.1%)
+  Not abandoned: 177 (98.9%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 1 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 1 calls
+
+  Average time to abandon: 116s (1.9m)
+  Min time to abandon: 6s
+  Max time to abandon: 226s (3.8m)
+  95th percentile: 226s (3.8m)
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Abandoned: 3 (1.9%)
+  Not abandoned: 151 (98.1%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 1 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Examiners Schedule Check; Bar Examiners Menu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 1 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Examiners Schedule Check; Bar Examiners Menu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 1 calls
+
+  Average time to abandon: 232s (3.9m)
+  Min time to abandon: 2s
+  Max time to abandon: 574s (9.6m)
+  95th percentile: 574s (9.6m)
+
+IVR PATTERNS
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Calls with IVR data: 143
+  IVR segments: mean=4.5, min=4, max=14
+  Total IVR time: mean=122s, max=748s
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Calls with IVR data: 179
+  IVR segments: mean=4.7, min=3, max=24
+  Total IVR time: mean=190s, max=512s
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Calls with IVR data: 154
+  IVR segments: mean=4.6, min=4, max=21
+  Total IVR time: mean=144s, max=516s
+
+QUEUE BEHAVIOR
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Calls in queue: 7
+  Queue segments: mean=1.3
+  Total queue time: mean=75s, max=286s
+  P95 queue time: 286s
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Calls in queue: 12
+  Queue segments: mean=1.3
+  Total queue time: mean=33s, max=226s
+  P95 queue time: 226s
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Calls in queue: 8
+  Queue segments: mean=1.6
+  Total queue time: mean=854s, max=5130s
+  P95 queue time: 5130s
+
+TRANSFER PATTERNS
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Blind transferred: 3 (2.1%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 140 (97.9%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Blind transferred: 6 (3.4%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 173 (96.6%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Blind transferred: 4 (2.6%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 150 (97.4%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+TIMING PATTERNS (Hourly Distribution)
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Hourly distribution:
+    08:xx      1 calls  █
+    09:xx     12 calls  █████████████████████
+    10:xx     20 calls  ████████████████████████████████████
+    11:xx     22 calls  ████████████████████████████████████████
+    12:xx     22 calls  ████████████████████████████████████████
+    13:xx     17 calls  ██████████████████████████████
+    14:xx     14 calls  █████████████████████████
+    15:xx     16 calls  █████████████████████████████
+    16:xx     15 calls  ███████████████████████████
+    17:xx      4 calls  ███████
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Hourly distribution:
+    07:xx      2 calls  ███
+    08:xx      2 calls  ███
+    09:xx     21 calls  ████████████████████████████████
+    10:xx     22 calls  █████████████████████████████████
+    11:xx     22 calls  █████████████████████████████████
+    12:xx     18 calls  ███████████████████████████
+    13:xx     17 calls  ██████████████████████████
+    14:xx     20 calls  ██████████████████████████████
+    15:xx     26 calls  ████████████████████████████████████████
+    16:xx     21 calls  ████████████████████████████████
+    17:xx      8 calls  ████████████
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Hourly distribution:
+    08:xx      3 calls  █████
+    09:xx     22 calls  ████████████████████████████████████████
+    10:xx     20 calls  ████████████████████████████████████
+    11:xx     16 calls  █████████████████████████████
+    12:xx     19 calls  ██████████████████████████████████
+    13:xx     20 calls  ████████████████████████████████████
+    14:xx     20 calls  ████████████████████████████████████
+    15:xx     22 calls  ████████████████████████████████████████
+    16:xx      9 calls  ████████████████
+    17:xx      3 calls  █████
+
+CALL OUTCOMES & DISCONNECT TYPES
+================================================================================
+
+--- doc_7ec1019bfcbe_Bar Examiners May.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 143 (100.0%)
+
+  Disconnect types:
+    External: 71 calls (49.7%)
+    System: 67 calls (46.9%)
+    Agent: 5 calls (3.5%)
+
+--- doc_a7d02a33e3f6_Bar Examiners June.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 179 (100.0%)
+
+  Disconnect types:
+    External: 113 calls (63.1%)
+    System: 62 calls (34.6%)
+    Agent: 4 calls (2.2%)
+
+--- doc_c848269b044c_Bar Examiners April.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 154 (100.0%)
+
+  Disconnect types:
+    External: 82 calls (53.2%)
+    System: 70 calls (45.5%)
+    Agent: 2 calls (1.3%)

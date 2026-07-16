@@ -1,0 +1,4 @@
+Month,Avg Wait (s),P50 Wait (s),P95 Wait (s),Max Wait (s)
+April,95.0,72.0,226.0,576.0
+May,90.0,63.0,236.0,777.0
+June,85.0,56.0,258.0,513.0

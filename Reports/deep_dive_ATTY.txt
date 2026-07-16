@@ -1,0 +1,345 @@
+================================================================================
+DEEP-DIVE ANALYSIS: ATTY
+Period: April - June 2026
+Total calls: 5,303
+Generated: 2026-07-13 14:04
+================================================================================
+
+COMPLETE CALL FLOW PATHS (without Schedule Checks)
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv (1,973 calls) ---
+  Calls with flow data: 1,973
+  After stripping 'schedule check' segments: 1,971 (99.9%) 2 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [5 steps] 509 calls (25.8%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    2. [3 steps] 429 calls (21.7%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    3. [5 steps] 147 calls (7.5%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Ethics ATTY Direct to Queue;Ethics Attorney In-Queue Flow
+    4. [3 steps] 140 calls (7.1%)
+       Accounting Menu Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow
+    5. [3 steps] 95 calls (4.8%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow
+    6. [3 steps] 79 calls (4.0%)
+       Accounting Menu Flow;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    7. [5 steps] 69 calls (3.5%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    8. [3 steps] 56 calls (2.8%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu
+    9. [6 steps] 48 calls (2.4%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    10. [3 steps] 42 calls (2.1%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    11. [5 steps] 24 calls (1.2%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow
+    12. [2 steps] 23 calls (1.2%)
+       Practice Resource Center Menu;Practice Resource Center In-Queue Flow
+    13. [1 steps] 22 calls (1.1%)
+       Accounting Menu Flow
+    14. [3 steps] 18 calls (0.9%)
+       Accounting Menu Flow;Website Direct to Queue;Website In-Queue Call Flow
+    15. [4 steps] 17 calls (0.9%)
+       Accounting Menu Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow;Membership Records In-Queue Call Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 925 calls (46.9%)
+    LSE Menu: 468 calls (23.7%)
+    Accounting Menu Flow: 432 calls (21.9%)
+    ACAP Menu: 52 calls (2.6%)
+    Practice Resource Center Menu: 43 calls (2.2%)
+    DD Legal Menu Flow: 15 calls (0.8%)
+    Ethics Menu: 14 calls (0.7%)
+    UPL Menu: 8 calls (0.4%)
+    Tallahassee Branch Menu: 4 calls (0.2%)
+    ACAP PA Queue 8-9 5-530: 3 calls (0.2%)
+
+--- doc_74e69e181d95_ATTY June.csv (2,166 calls) ---
+  Calls with flow data: 2,166
+  After stripping 'schedule check' segments: 2,165 (100.0%) 1 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [5 steps] 605 calls (27.9%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    2. [3 steps] 417 calls (19.3%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    3. [3 steps] 184 calls (8.5%)
+       Accounting Menu Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow
+    4. [3 steps] 144 calls (6.6%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow
+    5. [5 steps] 133 calls (6.1%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Ethics ATTY Direct to Queue;Ethics Attorney In-Queue Flow
+    6. [3 steps] 100 calls (4.6%)
+       Accounting Menu Flow;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    7. [3 steps] 77 calls (3.6%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu
+    8. [2 steps] 59 calls (2.7%)
+       Practice Resource Center Menu;Practice Resource Center In-Queue Flow
+    9. [5 steps] 53 calls (2.4%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    10. [3 steps] 48 calls (2.2%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    11. [6 steps] 42 calls (1.9%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    12. [3 steps] 22 calls (1.0%)
+       Accounting Menu Flow;Website Direct to Queue;Website In-Queue Call Flow
+    13. [1 steps] 20 calls (0.9%)
+       Accounting Menu Flow
+    14. [5 steps] 19 calls (0.9%)
+       Accounting Menu Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    15. [4 steps] 17 calls (0.8%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 1,017 calls (47.0%)
+    Accounting Menu Flow: 533 calls (24.6%)
+    LSE Menu: 438 calls (20.2%)
+    Practice Resource Center Menu: 70 calls (3.2%)
+    ACAP Menu: 53 calls (2.4%)
+    DD Legal Menu Flow: 18 calls (0.8%)
+    Ethics Menu: 14 calls (0.6%)
+    UPL Menu: 7 calls (0.3%)
+    ACAP PA Queue 8-9 5-530: 3 calls (0.1%)
+    Bar Examiners Menu: 2 calls (0.1%)
+
+--- doc_d0cec11475c8_ATTY April.csv (1,164 calls) ---
+  Calls with flow data: 1,164
+  After stripping 'schedule check' segments: 1,164 (100.0%) 0 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [3 steps] 275 calls (23.6%)
+       LSE Menu;LSE Direct to Queue;LSE In-Queue Flow
+    2. [5 steps] 252 calls (21.6%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    3. [5 steps] 89 calls (7.6%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Ethics ATTY Direct to Queue;Ethics Attorney In-Queue Flow
+    4. [3 steps] 81 calls (7.0%)
+       Accounting Menu Flow;Accounting Direct to Queue;Accounting In-Queue Call Flow
+    5. [3 steps] 49 calls (4.2%)
+       Accounting Menu Flow;Membership Records Direct to Queue;Membership Records In-Queue Call Flow
+    6. [3 steps] 44 calls (3.8%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu
+    7. [6 steps] 44 calls (3.8%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    8. [5 steps] 44 calls (3.8%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;Bar Switchboard Direct to Queue;Switchboard In-Queue Call Flow
+    9. [2 steps] 30 calls (2.6%)
+       Practice Resource Center Menu;Practice Resource Center In-Queue Flow
+    10. [3 steps] 29 calls (2.5%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    11. [3 steps] 21 calls (1.8%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow
+    12. [4 steps] 17 calls (1.5%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    13. [4 steps] 14 calls (1.2%)
+       Accounting Menu Flow;Fee Season Direct to Queue;Fee Season In-Queue Call Flow;Accounting In-Queue Call Flow
+    14. [7 steps] 11 calls (0.9%)
+       Bar Switchboard Main Flow;Bar Switchboard ATTY Sub Menu Option;Bar Switchboard Attorney Submenu;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow;Membership Records In-Queue Call Flow
+    15. [3 steps] 10 calls (0.9%)
+       Ethics Menu;Ethics ATTY Direct to Queue;Ethics Attorney In-Queue Flow
+
+  Top-level flows (first segment after schedule checks):
+    Bar Switchboard Main Flow: 541 calls (46.5%)
+    LSE Menu: 299 calls (25.7%)
+    Accounting Menu Flow: 200 calls (17.2%)
+    Practice Resource Center Menu: 45 calls (3.9%)
+    ACAP Menu: 34 calls (2.9%)
+    DD Legal Menu Flow: 20 calls (1.7%)
+    Ethics Menu: 11 calls (0.9%)
+    UPL Menu: 6 calls (0.5%)
+    LRS Main Menu (Spanish or English): 4 calls (0.3%)
+    Bar Examiners Menu: 3 calls (0.3%)
+
+ABANDONMENT PATTERNS
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Abandoned: 51 (2.6%)
+  Not abandoned: 1,922 (97.4%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Ethics ATTY Direct to Queue; Ethics Attorney In-Queue Flow: 9 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 8 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; LSE Menu Schedule Check; LSE Menu; LSE Direct to Queue; LSE In-Queue Flow: 6 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Membership Records Direct to Queue; Membership Records In-Queue Call Flow: 5 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Practice Resource Center Menu Schedule Check; Practice Resource Center Menu; Practice Resource Center In-Queue Flow: 2 calls
+
+  Average time to abandon: 109s (1.8m)
+  Min time to abandon: 0s
+  Max time to abandon: 467s (7.8m)
+  95th percentile: 372s (6.2m)
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Abandoned: 71 (3.3%)
+  Not abandoned: 2,095 (96.7%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Membership Records Direct to Queue; Membership Records In-Queue Call Flow: 16 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 9 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Ethics ATTY Direct to Queue; Ethics Attorney In-Queue Flow: 8 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; LSE Menu Schedule Check; LSE Menu; LSE Direct to Queue; LSE In-Queue Flow: 8 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Accounting Menu Schedule Check; Accounting Menu Flow; Fee Season Direct to Queue; Fee Season In-Queue Call Flow: 5 calls
+
+  Average time to abandon: 136s (2.3m)
+  Min time to abandon: 1s
+  Max time to abandon: 752s (12.5m)
+  95th percentile: 446s (7.4m)
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Abandoned: 40 (3.4%)
+  Not abandoned: 1,124 (96.6%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Accounting Menu Schedule Check; Accounting Menu Flow; Accounting Direct to Queue; Accounting In-Queue Call Flow: 6 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Ethics ATTY Direct to Queue; Ethics Attorney In-Queue Flow: 5 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow: 5 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; LSE Menu Schedule Check; LSE Menu; LSE Direct to Queue; LSE In-Queue Flow: 4 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard ATTY Sub Menu Option; Bar Switchboard Attorney Submenu; Membership Records Direct to Queue; Membership Records In-Queue Call Flow: 4 calls
+
+  Average time to abandon: 156s (2.6m)
+  Min time to abandon: 0s
+  Max time to abandon: 920s (15.3m)
+  95th percentile: 833s (13.9m)
+
+IVR PATTERNS
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Calls with IVR data: 1,973
+  IVR segments: mean=6.7, min=4, max=28
+  Total IVR time: mean=87s, max=371s
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Calls with IVR data: 2,166
+  IVR segments: mean=6.7, min=4, max=25
+  Total IVR time: mean=86s, max=477s
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Calls with IVR data: 1,164
+  IVR segments: mean=6.8, min=4, max=19
+  Total IVR time: mean=89s, max=516s
+
+QUEUE BEHAVIOR
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Calls in queue: 1,868
+  Queue segments: mean=1.3
+  Total queue time: mean=64s, max=3073s
+  P95 queue time: 308s
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Calls in queue: 2,054
+  Queue segments: mean=1.3
+  Total queue time: mean=78s, max=1621s
+  P95 queue time: 410s
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Calls in queue: 1,089
+  Queue segments: mean=1.3
+  Total queue time: mean=53s, max=1448s
+  P95 queue time: 265s
+
+TRANSFER PATTERNS
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Blind transferred: 571 (28.9%)
+  Consult transferred: 4 (0.2%)
+  Not transferred: 1,400 (71.0%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Blind transferred: 558 (25.8%)
+  Consult transferred: 4 (0.2%)
+  Not transferred: 1,605 (74.1%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Blind transferred: 365 (31.4%)
+  Consult transferred: 2 (0.2%)
+  Not transferred: 798 (68.6%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+TIMING PATTERNS (Hourly Distribution)
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Hourly distribution:
+    07:xx      5 calls  
+    08:xx     76 calls  ██████████
+    09:xx    198 calls  ████████████████████████████
+    10:xx    282 calls  ████████████████████████████████████████
+    11:xx    282 calls  ████████████████████████████████████████
+    12:xx    211 calls  █████████████████████████████
+    13:xx    227 calls  ████████████████████████████████
+    14:xx    243 calls  ██████████████████████████████████
+    15:xx    229 calls  ████████████████████████████████
+    16:xx    202 calls  ████████████████████████████
+    17:xx     18 calls  ██
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Hourly distribution:
+    07:xx     10 calls  █
+    08:xx     76 calls  █████████
+    09:xx    243 calls  ███████████████████████████████
+    10:xx    293 calls  ██████████████████████████████████████
+    11:xx    308 calls  ████████████████████████████████████████
+    12:xx    240 calls  ███████████████████████████████
+    13:xx    259 calls  █████████████████████████████████
+    14:xx    235 calls  ██████████████████████████████
+    15:xx    276 calls  ███████████████████████████████████
+    16:xx    201 calls  ██████████████████████████
+    17:xx     25 calls  ███
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Hourly distribution:
+    07:xx      7 calls  █
+    08:xx     46 calls  ███████████
+    09:xx    129 calls  ███████████████████████████████
+    10:xx    166 calls  ████████████████████████████████████████
+    11:xx    154 calls  █████████████████████████████████████
+    12:xx    145 calls  ██████████████████████████████████
+    13:xx    127 calls  ██████████████████████████████
+    14:xx    110 calls  ██████████████████████████
+    15:xx    145 calls  ██████████████████████████████████
+    16:xx    121 calls  █████████████████████████████
+    17:xx     14 calls  ███
+
+CALL OUTCOMES & DISCONNECT TYPES
+================================================================================
+
+--- doc_38dfa13d8eb9_ATTY May.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 1,973 (100.0%)
+
+  Disconnect types:
+    External: 1,157 calls (58.6%)
+    Agent: 736 calls (37.3%)
+    System: 80 calls (4.1%)
+
+--- doc_74e69e181d95_ATTY June.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 2,166 (100.0%)
+
+  Disconnect types:
+    External: 1,193 calls (55.1%)
+    Agent: 884 calls (40.8%)
+    System: 89 calls (4.1%)
+
+--- doc_d0cec11475c8_ATTY April.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 1,164 (100.0%)
+
+  Disconnect types:
+    External: 637 calls (54.7%)
+    Agent: 466 calls (40.0%)
+    System: 61 calls (5.2%)

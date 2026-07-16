@@ -1,0 +1,5 @@
+Month,Total Calls,Successful,Failed,Abandoned,Success Rate (%),Fail Rate (%),Abandon Rate (%)
+April,1043,878,17,148,84.2,1.6,14.2
+May,1326,1070,21,235,80.7,1.6,17.7
+June,1364,1057,20,287,77.5,1.5,21.0
+TOTAL,3733,3005,58,670,80.5,1.6,17.9

@@ -1,0 +1,342 @@
+================================================================================
+DEEP-DIVE ANALYSIS: LRS SPANISH
+Period: April - June 2026
+Total calls: 3,733
+Generated: 2026-07-13 14:04
+================================================================================
+
+COMPLETE CALL FLOW PATHS (without Schedule Checks)
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv (1,326 calls) ---
+  Calls with flow data: 1,326
+  After stripping 'schedule check' segments: 1,326 (100.0%) 0 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [4 steps] 598 calls (45.1%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    2. [3 steps] 440 calls (33.2%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    3. [2 steps] 128 calls (9.7%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue
+    4. [3 steps] 84 calls (6.3%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue
+    5. [4 steps] 20 calls (1.5%)
+       Orlando Branch Menu;Orlando Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    6. [5 steps] 11 calls (0.8%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check;ACAP PAs Spanish In-Queue Flow
+    7. [4 steps] 6 calls (0.5%)
+       Miami Branch Menu;Miami Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    8. [4 steps] 4 calls (0.3%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    9. [6 steps] 4 calls (0.3%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 1;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    10. [7 steps] 4 calls (0.3%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    11. [6 steps] 4 calls (0.3%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 2;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    12. [3 steps] 3 calls (0.2%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    13. [3 steps] 2 calls (0.2%)
+       Orlando Branch Menu;Orlando Branch Spanish Menu;LRS Spanish Direct to Queue
+    14. [4 steps] 2 calls (0.2%)
+       Ft. Lauderdale Branch Menu;Ft. Lauderdale Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    15. [4 steps] 2 calls (0.2%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check
+
+  Top-level flows (first segment after schedule checks):
+    LRS Main Menu (Spanish or English): 693 calls (52.3%)
+    Bar Switchboard Main Flow: 574 calls (43.3%)
+    Orlando Branch Menu: 23 calls (1.7%)
+    ACAP Menu: 18 calls (1.4%)
+    Miami Branch Menu: 6 calls (0.5%)
+    DD Legal Menu Flow: 4 calls (0.3%)
+    Ft. Lauderdale Branch Menu: 3 calls (0.2%)
+    Accounting Menu Flow: 2 calls (0.2%)
+    Ethics Menu: 1 calls (0.1%)
+    Bar Examiners Menu: 1 calls (0.1%)
+
+--- doc_87985000e90b_LRS Spanish April.csv (1,043 calls) ---
+  Calls with flow data: 1,043
+  After stripping 'schedule check' segments: 1,040 (99.7%) 3 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [4 steps] 480 calls (46.0%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    2. [3 steps] 336 calls (32.2%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    3. [2 steps] 113 calls (10.8%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue
+    4. [3 steps] 64 calls (6.1%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue
+    5. [4 steps] 8 calls (0.8%)
+       Orlando Branch Menu;Orlando Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    6. [5 steps] 7 calls (0.7%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check;ACAP PAs Spanish In-Queue Flow
+    7. [4 steps] 5 calls (0.5%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check
+    8. [4 steps] 4 calls (0.4%)
+       Miami Branch Menu;Miami Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    9. [4 steps] 3 calls (0.3%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue;Bar Switchboard Holiday Flow
+    10. [3 steps] 3 calls (0.3%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    11. [3 steps] 2 calls (0.2%)
+       UPL Menu;AHC Direct to Queue;AHC In-Queue Call Flow
+    12. [6 steps] 2 calls (0.2%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 1;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    13. [6 steps] 1 calls (0.1%)
+       Bar Switchboard Main Flow;Bar Switchboard Non-ATTY Sub Menu Option;Bar Switchboard Non-Attorney Submenu;LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue
+    14. [5 steps] 1 calls (0.1%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 2;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue
+    15. [2 steps] 1 calls (0.1%)
+       ACAP Menu;ACAP PA Spanish Menu
+
+  Top-level flows (first segment after schedule checks):
+    LRS Main Menu (Spanish or English): 553 calls (53.0%)
+    Bar Switchboard Main Flow: 453 calls (43.4%)
+    ACAP Menu: 17 calls (1.6%)
+    Orlando Branch Menu: 9 calls (0.9%)
+    Miami Branch Menu: 4 calls (0.4%)
+    UPL Menu: 2 calls (0.2%)
+    DD Legal Menu Flow: 1 calls (0.1%)
+    Accounting Menu Flow: 1 calls (0.1%)
+
+--- doc_edceaaca07cc_LRS Spanish June.csv (1,364 calls) ---
+  Calls with flow data: 1,364
+  After stripping 'schedule check' segments: 1,362 (99.9%) 2 calls had only schedule check
+
+  Top 15 Flow Paths (by call count, no schedule checks):
+    1. [4 steps] 603 calls (44.2%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    2. [3 steps] 435 calls (31.9%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    3. [2 steps] 153 calls (11.2%)
+       Bar Switchboard Main Flow;LRS Spanish Direct to Queue
+    4. [3 steps] 100 calls (7.3%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Direct to Queue
+    5. [5 steps] 17 calls (1.2%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check;ACAP PAs Spanish In-Queue Flow
+    6. [4 steps] 11 calls (0.8%)
+       Orlando Branch Menu;Orlando Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    7. [4 steps] 6 calls (0.4%)
+       Miami Branch Menu;Miami Branch Spanish Menu;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    8. [3 steps] 4 calls (0.3%)
+       ACAP Menu;ACAP PA Direct to Queue;ACAP PAs In-Queue flow
+    9. [3 steps] 4 calls (0.3%)
+       Orlando Branch Menu;Orlando Branch Spanish Menu;LRS Spanish Direct to Queue
+    10. [6 steps] 3 calls (0.2%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 4;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    11. [3 steps] 3 calls (0.2%)
+       Miami Branch Menu;Miami Branch Spanish Menu;LRS Spanish Direct to Queue
+    12. [4 steps] 3 calls (0.2%)
+       DD Legal Menu Flow;DD Legal Direct to Queue;DD Legal Queue Number Check;Division Director Legal In-Queue Flow
+    13. [6 steps] 3 calls (0.2%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 1;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    14. [6 steps] 2 calls (0.1%)
+       LRS Main Menu (Spanish or English);LRS Spanish Main Menu;LRS Spanish Main Menu Option 2;LRS Spanish Main Menu - Return Menu For One Prompt;LRS Spanish Direct to Queue;Lawyer Referral Service Spanish In-Queue Flow
+    15. [4 steps] 2 calls (0.1%)
+       ACAP Menu;ACAP PA Spanish Menu;ACAP PA Spanish Direct to Queue;ACAP PA Spanish Queue Number Check
+
+  Top-level flows (first segment after schedule checks):
+    LRS Main Menu (Spanish or English): 713 calls (52.3%)
+    Bar Switchboard Main Flow: 589 calls (43.2%)
+    ACAP Menu: 23 calls (1.7%)
+    Orlando Branch Menu: 17 calls (1.2%)
+    Miami Branch Menu: 9 calls (0.7%)
+    DD Legal Menu Flow: 3 calls (0.2%)
+    Accounting Menu Flow: 3 calls (0.2%)
+    Ethics Menu: 2 calls (0.1%)
+    Ft. Lauderdale Branch Menu: 1 calls (0.1%)
+    Bar Examiners Menu: 1 calls (0.1%)
+
+ABANDONMENT PATTERNS
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Abandoned: 235 (17.7%)
+  Not abandoned: 1,091 (82.3%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 117 calls
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 106 calls
+    ACAP Menu Schedule Check; ACAP PA Queue 8-9 5-530; Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 2 calls
+    Orlando Switchboard Schedule Check; Orlando Branch Menu; Orlando Branch Spanish Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 2 calls
+    Miami Switchboard Schedule Check; Miami Branch Menu; Miami Branch Spanish Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 2 calls
+
+  Average time to abandon: 138s (2.3m)
+  Min time to abandon: 0s
+  Max time to abandon: 819s (13.7m)
+  95th percentile: 463s (7.7m)
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Abandoned: 148 (14.2%)
+  Not abandoned: 895 (85.8%)
+
+  Abandonment flow paths (top 5):
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 73 calls
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 71 calls
+    Orlando Switchboard Schedule Check; Orlando Branch Menu; Operator - Orlando; LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 1 calls
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 5; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 1 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 1 calls
+
+  Average time to abandon: 101s (1.7m)
+  Min time to abandon: 0s
+  Max time to abandon: 584s (9.7m)
+  95th percentile: 326s (5.4m)
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Abandoned: 287 (21.0%)
+  Not abandoned: 1,077 (79.0%)
+
+  Abandonment flow paths (top 5):
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 137 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 132 calls
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Main Menu Option 1; LRS Spanish Main Menu - Return Menu For One Prompt; LRS Spanish Direct to Queue; Lawyer Referral Service Spanish In-Queue Flow: 3 calls
+    Bar Switchboard Schedule Check; Bar Switchboard Main Flow; LRS Spanish Direct to Queue: 3 calls
+    LRS Menu Schedule Check; LRS Main Menu (Spanish or English); LRS Spanish Main Menu; LRS Spanish Direct to Queue: 2 calls
+
+  Average time to abandon: 179s (3.0m)
+  Min time to abandon: 0s
+  Max time to abandon: 1222s (20.4m)
+  95th percentile: 542s (9.0m)
+
+IVR PATTERNS
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Calls with IVR data: 1,326
+  IVR segments: mean=3.7, min=3, max=11
+  Total IVR time: mean=130s, max=302s
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Calls with IVR data: 1,043
+  IVR segments: mean=3.7, min=3, max=28
+  Total IVR time: mean=132s, max=535s
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Calls with IVR data: 1,364
+  IVR segments: mean=3.7, min=3, max=12
+  Total IVR time: mean=126s, max=272s
+
+QUEUE BEHAVIOR
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Calls in queue: 1,111
+  Queue segments: mean=1.0
+  Total queue time: mean=177s, max=1090s
+  P95 queue time: 535s
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Calls in queue: 857
+  Queue segments: mean=1.0
+  Total queue time: mean=121s, max=937s
+  P95 queue time: 377s
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Calls in queue: 1,108
+  Queue segments: mean=1.0
+  Total queue time: mean=233s, max=2726s
+  P95 queue time: 784s
+
+TRANSFER PATTERNS
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Blind transferred: 51 (3.8%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 1,275 (96.2%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Blind transferred: 33 (3.2%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 1,010 (96.8%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Blind transferred: 56 (4.1%)
+  Consult transferred: 0 (0.0%)
+  Not transferred: 1,308 (95.9%)
+
+  Manual wrap-up referrals: 0 (0.0%)
+
+TIMING PATTERNS (Hourly Distribution)
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Hourly distribution:
+    07:xx      5 calls  █
+    08:xx     57 calls  ████████████
+    09:xx    117 calls  █████████████████████████
+    10:xx    169 calls  ████████████████████████████████████
+    11:xx    168 calls  ████████████████████████████████████
+    12:xx    162 calls  ███████████████████████████████████
+    13:xx    185 calls  ████████████████████████████████████████
+    14:xx    150 calls  ████████████████████████████████
+    15:xx    148 calls  ████████████████████████████████
+    16:xx    131 calls  ████████████████████████████
+    17:xx     34 calls  ███████
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Hourly distribution:
+    08:xx     39 calls  ███████████
+    09:xx    116 calls  ██████████████████████████████████
+    10:xx    120 calls  ███████████████████████████████████
+    11:xx    112 calls  ████████████████████████████████
+    12:xx    136 calls  ████████████████████████████████████████
+    13:xx    116 calls  ██████████████████████████████████
+    14:xx    127 calls  █████████████████████████████████████
+    15:xx    129 calls  █████████████████████████████████████
+    16:xx    105 calls  ██████████████████████████████
+    17:xx     43 calls  ████████████
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Hourly distribution:
+    07:xx      3 calls  
+    08:xx     54 calls  ██████████
+    09:xx    122 calls  ████████████████████████
+    10:xx    182 calls  ████████████████████████████████████
+    11:xx    202 calls  ████████████████████████████████████████
+    12:xx    174 calls  ██████████████████████████████████
+    13:xx    175 calls  ██████████████████████████████████
+    14:xx    139 calls  ███████████████████████████
+    15:xx    138 calls  ███████████████████████████
+    16:xx    141 calls  ███████████████████████████
+    17:xx     34 calls  ██████
+
+CALL OUTCOMES & DISCONNECT TYPES
+================================================================================
+
+--- doc_66820355f921_LRS Spanish May.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 1,326 (100.0%)
+
+  Disconnect types:
+    External: 817 calls (61.6%)
+    Agent: 502 calls (37.9%)
+    System: 7 calls (0.5%)
+
+--- doc_87985000e90b_LRS Spanish April.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 1,043 (100.0%)
+
+  Disconnect types:
+    External: 617 calls (59.2%)
+    Agent: 418 calls (40.1%)
+    System: 8 calls (0.8%)
+
+--- doc_edceaaca07cc_LRS Spanish June.csv ---
+  Successful: 0 (0.0%)
+  Failed: 0 (0.0%)
+  Neither: 1,364 (100.0%)
+
+  Disconnect types:
+    External: 979 calls (71.8%)
+    Agent: 381 calls (27.9%)
+    System: 4 calls (0.3%)
