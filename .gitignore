@@ -1,0 +1,18 @@
+# Generated reports
+Output/
+Reports/
+Reports_HTML/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
