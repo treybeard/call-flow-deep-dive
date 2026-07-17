@@ -1,21 +1,5 @@
-Disconnect Type,April,May,June,Total
-Successful,2008,2777,2782,7567
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue; Lawyer Referral Service English In-Queue Flow,638,912,890,2440
-Failed,294,445,454,1193
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow,293,402,409,1104
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Main Menu Option 4,167,189,219,575
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Main Menu Option 2,148,192,201,541
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Direct to Queue,129,200,203,532
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow,121,185,179,485
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu,137,168,170,475
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu,109,143,157,409
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Main Menu Option 5,100,140,154,394
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LRS Main Menu (Spanish or English); LRS English Main Menu; LRS English Main Menu Option 1,85,130,96,311
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow; Lawyer Referral Service English In-Queue Flow,34,70,72,176
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; UPL Menu Schedule Check; UPL Menu; AHC Direct to Queue; AHC In-Queue Call Flow,39,37,46,122
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow; ACAP Attorney In-Queue Flow,31,36,41,108
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; LSE Menu Schedule Check; LSE Menu; LSE Direct to Queue; LSE In-Queue Flow,29,27,39,95
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; DD Legal Direct to Queue; DD Legal Queue Number Check; Division Director Legal In-Queue Flow,18,32,40,90
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PA Queue 8-9 5-530,14,36,39,89
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow; Division Director Legal In-Queue Flow,20,34,21,75
-Bar Switchboard Schedule Check; Bar Switchboard Main Flow; Bar Switchboard Non-ATTY Sub Menu Option; Bar Switchboard Non-Attorney Submenu; Bar Switchboard Direct to Queue; Switchboard In-Queue Call Flow; ACAP Menu Schedule Check; ACAP Menu; ACAP PA Direct to Queue; ACAP PAs In-Queue flow,13,34,24,71
+Month,Total,Successful,Failed,Abandoned,Success%,Fail%,Abandon%
+April,2467,2008,294,165,81.4,11.9,6.7
+May,3429,2777,445,207,81.0,13.0,6.0
+June,3561,2782,454,325,78.1,12.7,9.1
+Total,9457,7567,1193,697,80.0,12.6,7.4

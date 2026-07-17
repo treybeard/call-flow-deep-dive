@@ -548,6 +548,9 @@ def generate_report(category=None):
     ws = wb.active
     ws.title = "Summary"
 
+    # Create Summary tab first (active)
+    create_summary_tab(wb, outcomes, duration, transfers, flow_paths_list)
+
     # Create monthly tabs
     for month in months:
         create_monthly_tab(wb, month, outcomes, duration, monthly_flow_paths.get(month, []), None)

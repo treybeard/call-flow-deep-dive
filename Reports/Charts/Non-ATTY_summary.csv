@@ -1,8 +1,5 @@
 Metric,April,May,June,Total
 Total Calls,2467,3429,3561,9457
-Successful,0,0,0,0
-Failed,0,0,0,0
-Abandoned,0,0,0,0
-Success %,0,0,0,0.0
-Abandon %,0,0,0,0.0
-Average Duration (s),0,0,0,0.0
+Successful,2008,2777,2782,7567
+Failed,294,445,454,1193
+Abandoned,165,207,325,697

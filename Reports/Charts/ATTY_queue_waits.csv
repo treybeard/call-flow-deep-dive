@@ -1,4 +1,4 @@
-Month,Avg Wait (s),P50 Wait (s),P95 Wait (s),Max Wait (s)
-April,141.0,110.0,444.0,568.0
-May,132.0,95.0,418.0,724.0
-June,145.0,119.0,387.0,639.0
+Month,Total Calls,Has Hold Data,Hold Data %,Avg Hold (s),P50 Hold (s),Max Hold (s)
+April,1164,83,7.1,141.0,109.6,568.3
+May,1973,130,6.6,132.0,95.2,724.0
+June,2166,151,7.0,144.9,118.8,638.9
