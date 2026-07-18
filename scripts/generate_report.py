@@ -19,8 +19,6 @@ from collections import defaultdict
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side, numbers
 
-sys.path.insert(0, '/Library/Python/3.9/lib/python/site-packages')
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHARTS_DIR = os.path.join(PROJECT_DIR, "Reports", "Charts")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "Output")

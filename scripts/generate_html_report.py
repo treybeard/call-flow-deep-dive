@@ -1,20 +1,27 @@
 #!/usr/bin/env python3
-"""Convert Switchboard Deep Dive XLSX to HTML with charts and graphs."""
+"""Generate HTML dashboard from CSV reports.
+
+Reads CSV data from Reports/Charts/ and creates an HTML dashboard with
+matplotlib charts for each tab.
+
+Usage:
+    cd scripts
+    python3 generate_html_report.py
+    # or specify category:
+    python3 generate_html_report.py Switchboard
+"""
 
 import os
 import sys
-import io
+import csv
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-sys.path.insert(0, '/Library/Python/3.9/lib/python/site-packages')
-from openpyxl import load_workbook
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-XLSX_PATH = os.path.join(PROJECT_DIR, "Output", "Switchboard_DeepDive_Apr-Jun_2026.xlsx")
-OUTPUT_DIR = os.path.join(PROJECT_DIR, "Reports_HTML")
-CHARTS_DIR = os.path.join(OUTPUT_DIR, "charts")
+CHARTS_DIR = os.path.join(PROJECT_DIR, "Reports_HTML", "charts")
+REPORTS_DIR = os.path.join(PROJECT_DIR, "Reports", "Charts")
 
 COLORS = {
     'primary': '#2E86AB',
@@ -25,444 +32,475 @@ COLORS = {
     'info': '#17a2b8',
 }
 
-def parse_duration(dur_str):
-    if ':' in str(dur_str):
-        parts = str(dur_str).split(':')
-        return int(parts[0]) * 60 + int(parts[1])
-    return float(dur_str)
 
-def create_summary_charts(ws):
+def read_csv(filepath):
+    """Read CSV file and return list of dicts."""
+    rows = []
+    if not os.path.exists(filepath):
+        return rows
+    with open(filepath, 'r', encoding='utf-8', newline='') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rows.append(row)
+    return rows
+
+
+def create_summary_charts(outcomes, duration):
+    """Create KPI cards and monthly comparison chart from outcomes and duration data."""
     charts = []
-    # KPI cards
-    kpis = {}
-    for row in ws.iter_rows(min_row=4, max_row=8, min_col=1, max_col=3, values_only=True):
-        if row[0] and row[1]:
-            kpis[str(row[0])] = str(row[1])
-    
+
+    # Extract months (skip 'Total' row)
+    months = [r['Month'] for r in outcomes if r['Month'] != 'Total']
+
+    # KPI values
+    total_calls = sum(int(r['Total']) for r in outcomes if r['Month'] != 'Total')
+    total_abandoned = sum(int(r['Abandoned']) for r in outcomes if r['Month'] != 'Total')
+    total_successful = sum(int(r['Successful']) for r in outcomes if r['Month'] != 'Total')
+    abandon_rate = round(total_abandoned / total_calls * 100, 1) if total_calls else 0
+    success_rate = round(total_successful / total_calls * 100, 1) if total_calls else 0
+
+    # Avg duration
+    avg_durations = [float(r['Avg Duration (s)']) for r in duration if r['Month'] != 'Total']
+    overall_avg = sum(avg_durations) / len(avg_durations) if avg_durations else 0
+
     fig, axes = plt.subplots(2, 2, figsize=(12, 8))
-    kpi_labels = list(kpis.keys())[:4]
-    kpi_values = list(kpis.values())[:4]
-    for i, ax in enumerate(axes.flat):
-        if i < len(kpi_labels):
-            ax.axis('off')
-            ax.text(0.5, 0.5, f'{kpi_values[i]}', ha='center', va='center', fontsize=32, fontweight='bold', color=COLORS['primary'])
-            ax.text(0.5, 0.2, kpi_labels[i], ha='center', va='center', fontsize=14, color='#666')
+    kpis = [
+        (f'{total_calls:,}', 'Total Calls'),
+        (f'{abandon_rate}%', 'Abandonment Rate'),
+        (f'{success_rate}%', 'Success Rate'),
+        (f'{overall_avg:.0f}s', 'Avg Duration'),
+    ]
+    for i, (value, label) in enumerate(kpis):
+        ax = axes[i // 2, i % 2]
+        ax.axis('off')
+        ax.text(0.5, 0.5, value, ha='center', va='center', fontsize=32, fontweight='bold', color=COLORS['primary'])
+        ax.text(0.5, 0.2, label, ha='center', va='center', fontsize=14, color='#666')
     plt.suptitle('Key Performance Indicators', fontsize=16, fontweight='bold')
     plt.tight_layout()
     chart_path = os.path.join(CHARTS_DIR, 'summary_kpis.png')
     fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
     plt.close(fig)
     charts.append(('summary_kpis.png', 'KPI Cards'))
-    
-    # Monthly summary comparison
-    monthly_data = {}
-    for row in ws.iter_rows(min_row=21, max_row=27, min_col=1, max_col=5, values_only=True):
-        if row[0]:
-            monthly_data[row[0]] = [row[i] if row[i] else 0 for i in range(1, 5)]
-    
-    for key in monthly_data:
-        for i, val in enumerate(monthly_data[key]):
-            if isinstance(val, str) and '%' in val:
-                monthly_data[key][i] = float(val.replace('%', '')) / 100
-    
-    months = ['April', 'May', 'June']
-    metrics = ['Total Calls', 'Successful', 'Failed', 'Abandoned', 'Success Rate', 'Abandon Rate', 'Avg Duration']
-    
+
+    # Monthly comparison
+    monthly_data = {r['Month']: {
+        'Total': int(r['Total']),
+        'Successful': int(r['Successful']),
+        'Failed': int(r['Failed']),
+        'Abandoned': int(r['Abandoned']),
+    } for r in outcomes if r['Month'] != 'Total'}
+
+    months_sorted = sorted(monthly_data.keys(), key=lambda m: ['January','February','March','April','May','June','July','August','September','October','November','December'].index(m) if m in ['January','February','March','April','May','June','July','August','September','October','November','December'] else 99)
+    metrics = ['Total', 'Successful', 'Failed', 'Abandoned']
+
     fig, ax = plt.subplots(figsize=(12, 7))
-    x = range(len(months))
+    x = range(len(months_sorted))
     width = 0.15
-    
+
     for i, metric in enumerate(metrics):
-        if metric in monthly_data:
-            values = monthly_data[metric][:3]
-            offset = (i - 2.5) * width
-            bar = ax.bar([p + offset for p in x], values, width, label=metric)
-    
+        values = [monthly_data[m][metric] for m in months_sorted]
+        offset = (i - 1.5) * width
+        ax.bar([p + offset for p in x], values, width, label=metric)
+
     ax.set_xlabel('Month')
     ax.set_ylabel('Value')
     ax.set_title('Monthly Summary Comparison', fontsize=14, fontweight='bold')
     ax.set_xticks(x)
-    ax.set_xticklabels(months)
+    ax.set_xticklabels(months_sorted)
     ax.legend(loc='upper right', fontsize=9)
-    
+
     chart_path = os.path.join(CHARTS_DIR, 'monthly_summary.png')
     fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
     plt.close(fig)
     charts.append(('monthly_summary.png', 'Monthly Summary Comparison'))
-    
+
     return charts
 
-def create_monthly_charts(ws, month_name):
+
+def create_monthly_charts(month_name, outcomes, duration, flow_paths_month):
+    """Create monthly charts: call distribution, duration, top paths."""
     charts = []
-    ws_data = {}
-    for row in ws.iter_rows(min_row=2, max_row=40, min_col=1, max_col=3, values_only=True):
-        if row[0] and row[1]:
-            ws_data[str(row[0])] = row[1:]
-    
-    metrics = {}
-    if 'Key Metrics' in ws_data:
-        key_vals = ws_data['Key Metrics']
-        for val in key_vals:
-            if isinstance(val, tuple) and len(val) >= 2:
-                k = str(val[0]).strip() if val[0] else ''
-                v = str(val[1]).strip() if val[1] else ''
-                if k:
-                    metrics[k] = v
-    
+
+    # Get this month's data
+    month_outcome = next((r for r in outcomes if r['Month'] == month_name), None)
+    month_dur = next((r for r in duration if r['Month'] == month_name), None)
+
+    if not month_outcome:
+        return charts
+
     # Call distribution pie chart
-    data_section = None
-    for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=5, values_only=True):
-        if row[0] and 'Calls' in str(row[0]).lower():
-            data_section = row
-            break
-    
-    if data_section:
-        labels = []
-        values = []
-        for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=4, values_only=True):
-            if row[0] and row[1] and isinstance(row[0], str):
-                if row[1]:
-                    labels.append(str(row[0]))
-                    try:
-                        values.append(int(float(str(row[1]) if row[1] else '0')))
-                    except (ValueError, TypeError):
-                        pass
-    
-    if labels:
+    labels = ['Successful', 'Failed', 'Abandoned']
+    values = [
+        int(month_outcome.get('Successful', 0)),
+        int(month_outcome.get('Failed', 0)),
+        int(month_outcome.get('Abandoned', 0)),
+    ]
+
+    if sum(values) > 0:
         fig, ax = plt.subplots(figsize=(10, 8))
-        ax.pie(values, labels=labels, autopct='%1.1f%%', startangle=90, colors=[COLORS['primary'], COLORS['secondary'], COLORS['info'], COLORS['warning'], COLORS['success']])
+        ax.pie(values, labels=labels, autopct='%1.1f%%', startangle=90,
+               colors=[COLORS['success'], COLORS['danger'], COLORS['warning']])
         ax.set_title(f'{month_name} 2026 - Call Distribution', fontsize=14, fontweight='bold')
         chart_path = os.path.join(CHARTS_DIR, f'{month_name.lower()}_call_distribution.png')
         fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
         plt.close(fig)
         charts.append((f'{month_name.lower()}_call_distribution.png', f'{month_name} 2026 - Call Distribution'))
-    
+
     # Duration comparison bar chart
-    avg_duration = metrics.get('Avg Duration', '06:26')
-    p50_duration = metrics.get('P50 Duration', '05:10')
-    p95_duration = metrics.get('P95 Duration', '16:41')
-    
-    durations = [parse_duration(avg_duration), parse_duration(p50_duration), parse_duration(p95_duration)]
-    duration_labels = ['Avg Duration', 'P50 Duration', 'P95 Duration']
-    
-    fig, ax = plt.subplots(figsize=(8, 6))
-    bars = ax.bar(duration_labels, durations, color=[COLORS['info'], COLORS['primary'], COLORS['secondary']], edgecolor='white', linewidth=2)
-    ax.set_ylabel('Duration (seconds)')
-    ax.set_title(f'{month_name} 2026 - Duration Statistics', fontsize=14, fontweight='bold')
-    ax.grid(axis='y', alpha=0.3)
-    
-    for bar, duration in zip(bars, durations):
-        height = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width() / 2., height,
-                f'{int(duration // 60):02d}:{int(duration % 60):02d}',
-                ha='center', va='bottom', fontweight='bold', fontsize=11)
-    
-    chart_path = os.path.join(CHARTS_DIR, f'{month_name.lower()}_duration.png')
+    if month_dur:
+        avg_dur = float(month_dur.get('Avg Duration (s)', 0))
+        p50_dur = float(month_dur.get('P50 Duration (s)', 0))
+        p95_dur = float(month_dur.get('P95 Duration (s)', 0))
+
+        fig, ax = plt.subplots(figsize=(8, 6))
+        durations = [avg_dur, p50_dur, p95_dur]
+        duration_labels = ['Avg Duration', 'P50 Duration', 'P95 Duration']
+        bars = ax.bar(duration_labels, durations, color=[COLORS['info'], COLORS['primary'], COLORS['secondary']],
+                      edgecolor='white', linewidth=2)
+        ax.set_ylabel('Duration (MM:SS)')
+        ax.set_title(f'{month_name} 2026 - Duration Statistics', fontsize=14, fontweight='bold')
+        ax.grid(axis='y', alpha=0.3)
+
+        # Format y-axis tick labels to MM:SS
+        def format_mmss(seconds):
+            m = int(seconds) // 60
+            s = int(seconds) % 60
+            return f'{m:02d}:{s:02d}'
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda val, pos: format_mmss(val)))
+
+        for bar, duration in zip(bars, durations):
+            height = bar.get_height()
+            m, s = int(duration) // 60, int(duration) % 60
+            ax.text(bar.get_x() + bar.get_width() / 2., height,
+                    f'{m:02d}:{s:02d}', ha='center', va='bottom', fontweight='bold', fontsize=11)
+
+        chart_path = os.path.join(CHARTS_DIR, f'{month_name.lower()}_duration.png')
+        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
+        plt.close(fig)
+        charts.append((f'{month_name.lower()}_duration.png', f'{month_name} Duration Statistics'))
+
+    # Top call paths
+    if flow_paths_month:
+        paths = [(r['Path'], int(r['Count'])) for r in flow_paths_month]
+        paths.sort(key=lambda x: x[1], reverse=True)
+        top_paths = paths[:10]
+
+        if top_paths:
+            fig, ax = plt.subplots(figsize=(10, 6))
+            y_pos = range(len(top_paths))
+            counts = [p[1] for p in top_paths]
+
+            bars = ax.barh(y_pos, counts, color=COLORS['primary'], edgecolor='white', linewidth=1)
+            ax.set_yticks(y_pos)
+            ax.set_yticklabels([f"#{i+1} {p[0][:40]}" for i, p in enumerate(top_paths)], fontsize=9)
+            ax.set_xlabel('Number of Calls')
+            ax.set_title(f'Top 10 Call Flow Paths - {month_name} 2026', fontsize=14, fontweight='bold')
+            ax.grid(axis='x', alpha=0.3)
+
+            for i, (bar, count) in enumerate(zip(bars, counts)):
+                ax.text(bar.get_width() + max(counts) * 0.01, bar.get_y() + bar.get_height() / 2,
+                        f'{count:,}', ha='left', va='center', fontweight='bold', fontsize=10)
+
+            chart_path = os.path.join(CHARTS_DIR, f'{month_name.lower()}_top_paths.png')
+            fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
+            plt.close(fig)
+            charts.append((f'{month_name.lower()}_top_paths.png', f'{month_name} Top Call Flow Paths'))
+
+    return charts
+
+
+def create_transfers_charts(transfers):
+    """Create transfer patterns chart."""
+    charts = []
+
+    if not transfers:
+        return charts
+
+    months = [r['Month'] for r in transfers]
+    counts = [int(r['Total Transfers']) for r in transfers]
+    rates = [float(r['Transfer Rate (%)']) for r in transfers]
+
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+    x = range(len(months))
+    width = 0.35
+
+    ax1.bar([p + width/2 for p in x], counts, width, label='Transfer Count', color=COLORS['primary'])
+    ax2 = ax1.twinx()
+    ax2.plot([p + width/2 for p in x], rates, 'o-', color=COLORS['danger'], linewidth=2, label='Transfer Rate')
+
+    ax1.set_xlabel('Month')
+    ax1.set_ylabel('Transfer Count', color=COLORS['primary'])
+    ax2.set_ylabel('Transfer Rate (%)', color=COLORS['danger'])
+    ax1.set_title('Transfer Patterns', fontsize=14, fontweight='bold')
+    ax1.set_xticks([p + width/2 for p in x])
+    ax1.set_xticklabels(months)
+
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right')
+    ax1.grid(alpha=0.3)
+
+    chart_path = os.path.join(CHARTS_DIR, 'transfers.png')
     fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
     plt.close(fig)
-    charts.append((f'{month_name.lower()}_duration.png', f'{month_name} Duration Statistics'))
-    
-    # Top call paths
-    paths_data = []
-    for row in ws.iter_rows(min_row=19, max_row=28, min_col=1, max_col=3, values_only=True):
-        if row[0] and row[1]:
-            paths_data.append({
-                'rank': int(row[0]),
-                'path': str(row[1]),
-                'count': int(row[2]) if row[2] else 0
-            })
-    
-    if paths_data:
-        top_paths = paths_data[:10]
-        
-        fig, ax = plt.subplots(figsize=(10, 6))
-        y_pos = range(len(top_paths))
-        counts = [p['count'] for p in top_paths]
-        
-        bars = ax.barh(y_pos, counts, color=COLORS['primary'], edgecolor='white', linewidth=1)
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels([f"#{p['rank']} {p['path'][:40]}" for p in top_paths], fontsize=9)
-        ax.set_xlabel('Number of Calls')
-        ax.set_title(f'Top 10 Call Flow Paths - {month_name} 2026', fontsize=14, fontweight='bold')
-        ax.grid(axis='x', alpha=0.3)
-        
-        for i, (bar, count) in enumerate(zip(bars, counts)):
-            ax.text(bar.get_width() + max(counts) * 0.01, bar.get_y() + bar.get_height() / 2,
-                    f'{count:,}', ha='left', va='center', fontweight='bold', fontsize=10)
-        
-        chart_path = os.path.join(CHARTS_DIR, f'{month_name.lower()}_top_paths.png')
-        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
-        plt.close(fig)
-        charts.append((f'{month_name.lower()}_top_paths.png', f'{month_name} Top Call Flow Paths'))
-    
+    charts.append(('transfers.png', 'Transfer Patterns'))
+
     return charts
 
-def create_transfers_charts(ws):
-    charts = []
-    transfer_data = []
-    for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=1, max_col=4, values_only=True):
-        if row[0] and row[1]:
-            transfer_data.append({
-                'month': str(row[0]),
-                'count': int(row[1]) if row[1] else 0,
-                'rate': float(str(row[2]).replace('%', '')) / 100 if row[2] and '%' in str(row[2]) else (float(row[2]) if row[2] else 0)
-            })
-    
-    if transfer_data:
-        fig, ax1 = plt.subplots(figsize=(10, 6))
-        
-        months = [d['month'] for d in transfer_data]
-        counts = [d['count'] for d in transfer_data]
-        rates = [d['rate'] for d in transfer_data]
-        
-        x = range(len(months))
-        width = 0.35
-        
-        bars = ax1.bar([p + width/2 for p in x], counts, width, label='Transfer Count', color=COLORS['primary'])
-        ax2 = ax1.twinx()
-        ax2.plot([p + width/2 for p in x], rates, 'o-', color=COLORS['danger'], linewidth=2, label='Transfer Rate')
-        
-        ax1.set_xlabel('Month')
-        ax1.set_ylabel('Transfer Count', color=COLORS['primary'])
-        ax2.set_ylabel('Transfer Rate', color=COLORS['danger'])
-        ax1.set_title('Transfer Patterns', fontsize=14, fontweight='bold')
-        ax1.set_xticks([p + width/2 for p in x])
-        ax1.set_xticklabels(months)
-        
-        lines1, labels1 = ax1.get_legend_handles_labels()
-        lines2, labels2 = ax2.get_legend_handles_labels()
-        ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right')
-        ax1.grid(alpha=0.3)
-        
-        chart_path = os.path.join(CHARTS_DIR, 'transfers.png')
-        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
-        plt.close(fig)
-        charts.append(('transfers.png', 'Transfer Patterns'))
-    
-    return charts
 
-def create_disconnect_charts(ws):
+def create_disconnect_charts(disconnects):
+    """Create disconnect types chart."""
     charts = []
-    disconnect_data = []
-    for row in ws.iter_rows(min_row=4, max_row=18, min_col=1, max_col=3, values_only=True):
-        if row[0] and row[1]:
-            disconnect_data.append({
-                'rank': int(row[0]),
-                'type': str(row[1]),
-                'total': int(row[2]) if row[2] else 0
-            })
-    
-    if disconnect_data:
-        top_disconnected = disconnect_data[:10]
-        
+
+    if not disconnects:
+        return charts
+
+    # Get top 10 by total
+    top_disconnects = sorted(disconnects, key=lambda r: int(r.get('Total', 0)), reverse=True)[:10]
+
+    if top_disconnects:
+        labels = [r['Disconnect Type'][:50] + ('...' if len(r['Disconnect Type']) > 50 else '') for r in top_disconnects]
+        counts = [int(r['Total']) for r in top_disconnects]
+
         fig, ax = plt.subplots(figsize=(14, 8))
-        y_pos = range(len(top_disconnected))
-        counts = [d['total'] for d in top_disconnected]
-        
+        y_pos = range(len(labels))
         bars = ax.barh(y_pos, counts, color=COLORS['danger'], edgecolor='white', linewidth=1, height=0.6)
         ax.set_yticks(y_pos)
-        ax.set_yticklabels([d['type'][:55] + '...' if len(d['type']) > 55 else d['type'] for d in top_disconnected], fontsize=10)
+        ax.set_yticklabels(labels, fontsize=10)
         ax.set_xlabel('Number of Calls')
         ax.set_title('Top 10 Disconnect Types', fontsize=14, fontweight='bold')
         ax.grid(axis='x', alpha=0.3)
-        
+
         for bar, count in zip(bars, counts):
             ax.text(bar.get_width() + max(counts) * 0.01, bar.get_y() + bar.get_height() / 2,
                     f'{count:,}', ha='left', va='center', fontweight='bold', fontsize=11)
-        
+
         chart_path = os.path.join(CHARTS_DIR, 'disconnect_types.png')
         fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
         plt.close(fig)
         charts.append(('disconnect_types.png', 'Disconnect Types'))
-    
+
     return charts
 
-def create_hourly_charts(ws):
+
+def create_hourly_charts(hourly):
+    """Create hourly distribution chart (hours 6-18 only)."""
     charts = []
-    hours = []
-    april_data = []
-    may_data = []
-    june_data = []
-    
-    for row in ws.iter_rows(min_row=4, max_row=ws.max_row, min_col=1, max_col=4, values_only=True):
-        if row[0] is not None and isinstance(row[0], (int, float)):
-            hours.append(int(row[0]))
-            april_data.append(int(row[1]) if row[1] else 0)
-            may_data.append(int(row[2]) if row[2] else 0)
-            june_data.append(int(row[3]) if row[3] else 0)
-    
-    if hours:
-        fig, ax = plt.subplots(figsize=(12, 6))
-        ax.plot(hours, april_data, marker='o', linewidth=2, label='April', color=COLORS['primary'])
-        ax.plot(hours, may_data, marker='s', linewidth=2, label='May', color=COLORS['secondary'])
-        ax.plot(hours, june_data, marker='^', linewidth=2, label='June', color=COLORS['info'])
-        ax.set_xlabel('Hour of Day')
-        ax.set_ylabel('Number of Calls')
-        ax.set_title('Hourly Call Distribution', fontsize=14, fontweight='bold')
-        ax.set_xticks(hours)
-        ax.legend()
-        ax.grid(alpha=0.3)
-        
-        chart_path = os.path.join(CHARTS_DIR, 'hourly_distribution.png')
-        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
-        plt.close(fig)
-        charts.append(('hourly_distribution.png', 'Hourly Distribution'))
-    
+
+    if not hourly:
+        return charts
+
+    # Get month columns
+    months = [k for k in hourly[0].keys() if k not in ('Hour', 'All')]
+
+    # Filter to hours 6-18
+    hourly_filtered = [r for r in hourly if 6 <= int(r['Hour']) <= 18]
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    for month in months:
+        hours = [int(r['Hour']) for r in hourly_filtered]
+        values = [int(r.get(month, 0)) for r in hourly_filtered]
+        ax.plot(hours, values, marker='o', linewidth=2, label=month)
+
+    ax.set_xlabel('Hour of Day')
+    ax.set_ylabel('Number of Calls')
+    ax.set_title('Hourly Call Distribution (6 AM - 6 PM)', fontsize=14, fontweight='bold')
+    ax.set_xticks(sorted([int(r['Hour']) for r in hourly_filtered]))
+    ax.legend()
+    ax.grid(alpha=0.3)
+
+    chart_path = os.path.join(CHARTS_DIR, 'hourly_distribution.png')
+    fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
+    plt.close(fig)
+    charts.append(('hourly_distribution.png', 'Hourly Distribution'))
+
     return charts
 
-def create_duration_stats_charts(ws):
+
+def create_duration_stats_charts(duration):
+    """Create duration statistics chart with MM:SS format."""
     charts = []
-    duration_data = []
-    for row in ws.iter_rows(min_row=4, max_row=8, min_col=1, max_col=5, values_only=True):
-        if row[0]:
-            entry = {'metric': str(row[0])}
-            for i in range(1, 5):
-                if row[i]:
-                    try:
-                        entry[f'month{i-1}'] = parse_duration(str(row[i]))
-                    except:
-                        entry[f'month{i-1}'] = 0
-            duration_data.append(entry)
-    
-    if duration_data:
-        metrics = [d['metric'] for d in duration_data]
-        avgs = [d.get('month0', 0) for d in duration_data]
-        p50s = [d.get('month1', 0) for d in duration_data]
-        p95s = [d.get('month2', 0) for d in duration_data]
-        maxes = [d.get('month3', 0) for d in duration_data]
-        
-        x = range(len(metrics))
-        width = 0.2
-        
-        fig, ax = plt.subplots(figsize=(12, 7))
-        ax.bar([p + 0*width for p in x], avgs, width, label='Avg', color=COLORS['primary'])
-        ax.bar([p + 1*width for p in x], p50s, width, label='P50', color=COLORS['info'])
-        ax.bar([p + 2*width for p in x], p95s, width, label='P95', color=COLORS['secondary'])
-        ax.bar([p + 3*width for p in x], maxes, width, label='Max', color=COLORS['warning'])
-        
-        ax.set_xlabel('Metric')
-        ax.set_ylabel('Duration (seconds)')
-        ax.set_title('Duration Statistics by Month', fontsize=14, fontweight='bold')
-        ax.set_xticks([p + 1.5*width for p in x])
-        ax.set_xticklabels(metrics)
-        ax.legend()
-        ax.grid(axis='y', alpha=0.3)
-        
-        chart_path = os.path.join(CHARTS_DIR, 'duration_stats.png')
-        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
-        plt.close(fig)
-        charts.append(('duration_stats.png', 'Duration Statistics'))
-    
+
+    if not duration:
+        return charts
+
+    months = [r['Month'] for r in duration]
+    avg_vals = [float(r['Avg Duration (s)']) for r in duration]
+    p50_vals = [float(r['P50 Duration (s)']) for r in duration]
+    p95_vals = [float(r['P95 Duration (s)']) for r in duration]
+    max_vals = [float(r['Max Duration (s)']) for r in duration]
+
+    x = range(len(months))
+    width = 0.2
+
+    fig, ax = plt.subplots(figsize=(12, 7))
+    ax.bar([p + 0*width for p in x], avg_vals, width, label='Avg', color=COLORS['primary'])
+    ax.bar([p + 1*width for p in x], p50_vals, width, label='P50', color=COLORS['info'])
+    ax.bar([p + 2*width for p in x], p95_vals, width, label='P95', color=COLORS['secondary'])
+    ax.bar([p + 3*width for p in x], max_vals, width, label='Max', color=COLORS['warning'])
+
+    ax.set_xlabel('Metric')
+    ax.set_ylabel('Duration (MM:SS)')
+    ax.set_title('Duration Statistics by Month', fontsize=14, fontweight='bold')
+    ax.set_xticks([p + 1.5*width for p in x])
+    ax.set_xticklabels(months)
+    ax.legend()
+    ax.grid(axis='y', alpha=0.3)
+
+    # Format y-axis tick labels to MM:SS
+    def format_mmss(seconds):
+        m = int(seconds) // 60
+        s = int(seconds) % 60
+        return f'{m:02d}:{s:02d}'
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda val, pos: format_mmss(val)))
+
+    # Add MM:SS labels on bars
+    all_patches = ax.patches
+    idx = 0
+    for i in range(len(months)):
+        for j in range(4):
+            if idx < len(all_patches):
+                bar = all_patches[idx]
+                height = bar.get_height()
+                m, s = int(height) // 60, int(height) % 60
+                ax.text(bar.get_x() + bar.get_width() / 2., height,
+                        f'{m:02d}:{s:02d}', ha='center', va='bottom', fontsize=8)
+                idx += 1
+
+    chart_path = os.path.join(CHARTS_DIR, 'duration_stats.png')
+    fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
+    plt.close(fig)
+    charts.append(('duration_stats.png', 'Duration Statistics'))
+
     return charts
 
-def create_outcomes_charts(ws):
+
+def create_outcomes_charts(outcomes):
+    """Create outcomes stacked bar chart."""
     charts = []
-    months = []
-    totals = []
-    successful = []
-    failed = []
-    abandoned = []
-    
-    for row in ws.iter_rows(min_row=4, max_row=6, min_col=1, max_col=5, values_only=True):
-        if row[0]:
-            months.append(str(row[0]))
-            totals.append(int(row[1]) if row[1] else 0)
-            successful.append(int(row[2]) if row[2] else 0)
-            failed.append(int(row[3]) if row[3] else 0)
-            abandoned.append(int(row[4]) if row[4] else 0)
-    
-    if months:
-        fig, ax = plt.subplots(figsize=(10, 6))
-        x = range(len(months))
-        width = 0.6
-        
-        bars1 = ax.bar(x, successful, width, label='Successful', color=COLORS['success'])
-        bars2 = ax.bar(x, failed, width, bottom=successful, label='Failed', color=COLORS['danger'])
-        bars3 = ax.bar(x, abandoned, width, bottom=[s+f for s, f in zip(successful, failed)], label='Abandoned', color=COLORS['warning'])
-        
-        ax.set_xlabel('Month')
-        ax.set_ylabel('Number of Calls')
-        ax.set_title('Call Outcomes', fontsize=14, fontweight='bold')
-        ax.set_xticks(x)
-        ax.set_xticklabels(months)
-        ax.legend()
-        ax.grid(axis='y', alpha=0.3)
-        
-        chart_path = os.path.join(CHARTS_DIR, 'outcomes.png')
-        fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
-        plt.close(fig)
-        charts.append(('outcomes.png', 'Call Outcomes'))
-    
+
+    if not outcomes:
+        return charts
+
+    months = [r['Month'] for r in outcomes if r['Month'] != 'Total']
+    successful = [int(r['Successful']) for r in outcomes if r['Month'] != 'Total']
+    failed = [int(r['Failed']) for r in outcomes if r['Month'] != 'Total']
+    abandoned = [int(r['Abandoned']) for r in outcomes if r['Month'] != 'Total']
+
+    x = range(len(months))
+    width = 0.6
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.bar(x, successful, width, label='Successful', color=COLORS['success'])
+    ax.bar(x, failed, width, bottom=successful, label='Failed', color=COLORS['danger'])
+    ax.bar(x, abandoned, width, bottom=[s+f for s, f in zip(successful, failed)],
+           label='Abandoned', color=COLORS['warning'])
+
+    ax.set_xlabel('Month')
+    ax.set_ylabel('Number of Calls')
+    ax.set_title('Call Outcomes', fontsize=14, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(months)
+    ax.legend()
+    ax.grid(axis='y', alpha=0.3)
+
+    chart_path = os.path.join(CHARTS_DIR, 'outcomes.png')
+    fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
+    plt.close(fig)
+    charts.append(('outcomes.png', 'Call Outcomes'))
+
     return charts
 
-def create_flow_paths_charts(ws):
+
+def create_flow_paths_charts(flow_paths):
+    """Create flow paths chart."""
     charts = []
-    flow_data = []
-    for row in ws.iter_rows(min_row=4, max_row=20, min_col=1, max_col=3, values_only=True):
-        if row[0] and row[1]:
-            flow_data.append({
-                'path': str(row[0]),
-                'count': int(row[1]) if row[1] else 0
-            })
-    
-    if flow_data:
-        flow_data.sort(key=lambda x: x['count'], reverse=True)
-        top_flow_paths = flow_data[:15]
-        
+
+    if not flow_paths:
+        return charts
+
+    paths = [(r['Path'], int(r['Count'])) for r in flow_paths]
+    paths.sort(key=lambda x: x[1], reverse=True)
+    top_paths = paths[:15]
+
+    if top_paths:
         fig, ax = plt.subplots(figsize=(12, 8))
-        y_pos = range(len(top_flow_paths))
-        counts = [p['count'] for p in top_flow_paths]
-        
+        y_pos = range(len(top_paths))
+        counts = [p[1] for p in top_paths]
+
         bars = ax.barh(y_pos, counts, color=COLORS['secondary'], edgecolor='white', linewidth=1)
         ax.set_yticks(y_pos)
-        ax.set_yticklabels([p['path'][:60] + '...' if len(p['path']) > 60 else p['path'] for p in top_flow_paths], fontsize=9)
+        ax.set_yticklabels([p[0][:60] + ('...' if len(p[0]) > 60 else '') for p in top_paths], fontsize=9)
         ax.set_xlabel('Number of Calls')
         ax.set_title('Top 15 Call Flow Paths', fontsize=14, fontweight='bold')
         ax.grid(axis='x', alpha=0.3)
-        
-        for bar, count in zip(bars, counts):
+
+        for i, (bar, count) in enumerate(zip(bars, counts)):
             ax.text(bar.get_width() + max(counts) * 0.01, bar.get_y() + bar.get_height() / 2,
                     f'{count:,}', ha='left', va='center', fontweight='bold', fontsize=10)
-        
+
         chart_path = os.path.join(CHARTS_DIR, 'flow_paths.png')
         fig.savefig(chart_path, bbox_inches='tight', dpi=150, facecolor='white')
         plt.close(fig)
         charts.append(('flow_paths.png', 'Call Flow Paths'))
-    
+
     return charts
 
-def generate_html():
-    wb = load_workbook(XLSX_PATH)
+
+def generate_html(category='Switchboard'):
+    """Generate HTML dashboard from CSV data."""
     os.makedirs(CHARTS_DIR, exist_ok=True)
-    
+
+    # Read CSV data
+    outcomes = read_csv(os.path.join(REPORTS_DIR, f'{category}_outcomes.csv'))
+    duration = read_csv(os.path.join(REPORTS_DIR, f'{category}_duration.csv'))
+    hourly = read_csv(os.path.join(REPORTS_DIR, f'{category}_hourly.csv'))
+    transfers = read_csv(os.path.join(REPORTS_DIR, f'{category}_transfers.csv'))
+    disconnects = read_csv(os.path.join(REPORTS_DIR, f'{category}_disconnect_types.csv'))
+    flow_paths_all = read_csv(os.path.join(REPORTS_DIR, f'{category}_flow_paths.csv'))
+
+    # Read monthly flow paths
+    months = [r['Month'] for r in outcomes if r['Month'] != 'Total']
+    monthly_flow_paths = {}
+    for month in months:
+        monthly_flow_paths[month] = read_csv(os.path.join(REPORTS_DIR, f'{category}_flow_paths_{month.lower()}.csv'))
+
     all_charts = []
-    all_charts.extend(create_summary_charts(wb['Summary']))
-    
-    for month in ['April', 'May', 'June']:
-        all_charts.extend(create_monthly_charts(wb[month], month))
-    
-    all_charts.extend(create_transfers_charts(wb['Transfers']))
-    all_charts.extend(create_disconnect_charts(wb['Disconnect Types']))
-    all_charts.extend(create_hourly_charts(wb['Hourly']))
-    all_charts.extend(create_duration_stats_charts(wb['Duration']))
-    all_charts.extend(create_outcomes_charts(wb['Outcomes Stacked']))
-    all_charts.extend(create_flow_paths_charts(wb['Flow Paths']))
-    
-    charts_html = ""
-    for chart_file, chart_name in all_charts:
-        charts_html += f"""
+
+    # Summary charts
+    all_charts.extend(create_summary_charts(outcomes, duration))
+
+    # Monthly charts
+    for month in months:
+        all_charts.extend(create_monthly_charts(month, outcomes, duration, monthly_flow_paths.get(month, [])))
+
+    # Other charts
+    all_charts.extend(create_transfers_charts(transfers))
+    all_charts.extend(create_disconnect_charts(disconnects))
+    all_charts.extend(create_hourly_charts(hourly))
+    all_charts.extend(create_duration_stats_charts(duration))
+    all_charts.extend(create_outcomes_charts(outcomes))
+    all_charts.extend(create_flow_paths_charts(flow_paths_all))
+
+    # Build chart HTML blocks
+    charts_html = '\n'.join([
+        f'''
         <div class="chart-card">
-            <h3>{chart_name}</h3>
-            <img src="charts/{chart_file}" alt="{chart_name}" class="chart-image">
-        </div>
-        """
-    
-    html = f"""<!DOCTYPE html>
+            <h3>{name}</h3>
+            <img src="charts/{file}" alt="{name}" class="chart-image">
+        </div>'''
+        for file, name in all_charts
+    ])
+
+    # Build monthly tables from outcomes data
+    monthly_rows = [r for r in outcomes if r['Month'] != 'Total']
+
+    html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Switchboard Deep-Dive Analysis - April to June 2026</title>
+    <title>{category} Deep-Dive Analysis</title>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
@@ -470,23 +508,34 @@ def generate_html():
             background: #F8F9FA;
             color: #2C3E50;
             line-height: 1.6;
+            padding: 20px;
         }}
-        .container {{ max-width: 1400px; margin: 0 auto; padding: 20px; }}
-        header {{
-            background: linear-gradient(135deg, #2E86AB, #A23B72);
-            color: white;
-            padding: 40px 0;
+        h1 {{
             text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            color: #2E86AB;
+            font-size: 28px;
         }}
-        header h1 {{ font-size: 2.5em; margin-bottom: 10px; font-weight: 300; }}
-        header p {{ font-size: 1.2em; opacity: 0.9; }}
-        .dashboard {{
+        h2 {{
+            margin: 30px 0 15px;
+            color: #2E86AB;
+            border-bottom: 2px solid #2E86AB;
+            padding-bottom: 5px;
+        }}
+        h3 {{
+            margin-bottom: 10px;
+            color: #34495E;
+            font-size: 16px;
+        }}
+        .container {{
+            max-width: 1400px;
+            margin: 0 auto;
+        }}
+        .kpi-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }}
         .kpi-card {{
             background: white;
@@ -495,100 +544,282 @@ def generate_html():
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }}
-        .kpi-value {{ font-size: 2em; font-weight: bold; color: #2E86AB; }}
-        .kpi-label {{ color: #666; margin-top: 5px; }}
+        .kpi-value {{
+            font-size: 32px;
+            font-weight: bold;
+            color: #2E86AB;
+        }}
+        .kpi-label {{
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }}
+        .chart-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }}
         .chart-card {{
             background: white;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }}
-        .chart-card h3 {{
-            margin-bottom: 15px;
-            color: #2C3E50;
-            border-bottom: 2px solid #2E86AB;
-            padding-bottom: 10px;
         }}
         .chart-image {{
             width: 100%;
-            max-width: 1000px;
-            display: block;
-            margin: 0 auto;
+            height: auto;
+            border-radius: 4px;
         }}
-        .section {{ margin-bottom: 40px; }}
-        .section h2 {{
-            color: #2E86AB;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }}
-        .charts-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-            gap: 20px;
-        }}
-        footer {{
+        th {{
+            background: #2E86AB;
+            color: white;
+            padding: 12px 15px;
             text-align: center;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #ddd;
-            margin-top: 40px;
+            font-weight: 600;
+        }}
+        td {{
+            padding: 10px 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }}
+        tr:nth-child(even) {{
+            background: #f8f9fa;
+        }}
+        tr:hover {{
+            background: #e9ecef;
+        }}
+        .section {{
+            margin-bottom: 40px;
         }}
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Switchboard Deep-Dive Analysis</h1>
-            <p>April to June 2026</p>
-        </div>
-    </header>
     <div class="container">
-        <div class="dashboard">
-            <div class="kpi-card">
-                <div class="kpi-value">8,620</div>
-                <div class="kpi-label">Total Calls</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value">14.8%</div>
-                <div class="kpi-label">Abandonment Rate</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value">66.9%</div>
-                <div class="kpi-label">Success Rate</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value">06:40</div>
-                <div class="kpi-label">Avg Duration</div>
-            </div>
-        </div>
+        <h1>{category} Deep-Dive Analysis</h1>
+
         <div class="section">
-            <h2>Summary</h2>
-            <div class="charts-grid">
-                {charts_html}
+            <h2>Key Performance Indicators</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value">{total_calls:,.0f if monthly_rows else 0}</div>
+                    <div class="kpi-label">Total Calls</div>
+                </div>
+                <div class="kpi-card">
+'''
+
+    # Compute KPIs for the HTML body
+    total_calls_count = sum(int(r['Total']) for r in monthly_rows)
+    total_abandoned_count = sum(int(r['Abandoned']) for r in monthly_rows)
+    total_successful_count = sum(int(r['Successful']) for r in monthly_rows)
+    abandon_rate = round(total_abandoned_count / total_calls_count * 100, 1) if total_calls_count else 0
+    success_rate = round(total_successful_count / total_calls_count * 100, 1) if total_calls_count else 0
+    avg_durs = [float(r['Avg Duration (s)']) for r in duration if r['Month'] != 'Total']
+    overall_avg = sum(avg_durs) / len(avg_durs) if avg_durs else 0
+
+    def format_mmss(seconds):
+        m = int(seconds) // 60
+        s = int(seconds) % 60
+        return f'{m:02d}:{s:02d}'
+
+    html += f'''                    <div class="kpi-value">{abandon_rate}%</div>
+                    <div class="kpi-label">Abandonment Rate</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">{success_rate}%</div>
+                    <div class="kpi-label">Success Rate</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">{format_mmss(overall_avg)}</div>
+                    <div class="kpi-label">Avg Duration</div>
+                </div>
             </div>
         </div>
+
         <div class="section">
-            <h2>Detailed Analysis</h2>
-            <div class="charts-grid">
-                {charts_html}
+            <h2>Charts</h2>
+            <div class="chart-grid">
+{charts_html}
             </div>
         </div>
+
+        <div class="section">
+            <h2>Summary Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Calls</th>
+                        <th>Successful</th>
+                        <th>Failed</th>
+                        <th>Abandoned</th>
+                        <th>Success %</th>
+                        <th>Fail %</th>
+                        <th>Abandon %</th>
+                    </tr>
+                </thead>
+                <tbody>
+'''
+
+    for r in monthly_rows:
+        html += f'''                    <tr>
+                        <td>{r.get("Month", "")}</td>
+                        <td>{r.get("Total", "0")}</td>
+                        <td>{r.get("Successful", "0")}</td>
+                        <td>{r.get("Failed", "0")}</td>
+                        <td>{r.get("Abandoned", "0")}</td>
+                        <td>{r.get("Success%", "0")}%</td>
+                        <td>{r.get("Fail%", "0")}%</td>
+                        <td>{r.get("Abandon%", "0")}%</td>
+                    </tr>
+'''
+
+    html += f'''                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Duration Statistics</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Avg Duration</th>
+                        <th>P50 Duration</th>
+                        <th>P95 Duration</th>
+                        <th>Max Duration</th>
+                        <th>Valid Samples</th>
+                    </tr>
+                </thead>
+                <tbody>
+'''
+
+    for r in duration:
+        try:
+            avg_str = format_mmss(float(r.get('Avg Duration (s)', 0)))
+            p50_str = format_mmss(float(r.get('P50 Duration (s)', 0)))
+            p95_str = format_mmss(float(r.get('P95 Duration (s)', 0)))
+            max_str = format_mmss(float(r.get('Max Duration (s)', 0)))
+        except (ValueError, TypeError):
+            avg_str = p50_str = p95_str = max_str = '00:00'
+        html += f'''                    <tr>
+                        <td>{r.get("Month", "")}</td>
+                        <td>{avg_str}</td>
+                        <td>{p50_str}</td>
+                        <td>{p95_str}</td>
+                        <td>{max_str}</td>
+                        <td>{r.get("Valid Samples", "0")}</td>
+                    </tr>
+'''
+
+    html += f'''                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Transfer Patterns</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Transfers</th>
+                        <th>Blind Transfers</th>
+                        <th>Consult Transfers</th>
+                        <th>Transfer Rate (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+'''
+
+    for r in transfers:
+        html += f'''                    <tr>
+                        <td>{r.get("Month", "")}</td>
+                        <td>{r.get("Total Transfers", "0")}</td>
+                        <td>{r.get("Blind Transfers", "0")}</td>
+                        <td>{r.get("Consult Transfers", "0")}</td>
+                        <td>{r.get("Transfer Rate (%)", "0")}</td>
+                    </tr>
+'''
+
+    html += f'''                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Hourly Call Distribution (Business Hours 6 AM - 6 PM)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hour</th>
+'''
+    for m in months:
+        html += f'                        <th>{m}</th>\n'
+    html += '                        <th>All</th>\n'
+    html += '                    </tr>\n                </thead>\n                <tbody>\n'
+
+    for r in hourly:
+        hour = int(r.get('Hour', 0))
+        if 6 <= hour <= 18:
+            html += f'                    <tr>\n                        <td>{hour}</td>\n'
+            for m in months:
+                html += f'                        <td>{r.get(m, "0")}</td>\n'
+            html += f'                        <td>{r.get("All", "0")}</td>\n'
+            html += '                    </tr>\n'
+
+    html += '''                </tbody>
+            </table>
+        </div>
+
     </div>
-    <footer>
-        <div class="container">
-            <p>Generated by Call Flow Deep-Dive Analysis Tool</p>
-        </div>
-    </footer>
 </body>
-</html>"""
-    
-    html_path = os.path.join(OUTPUT_DIR, 'report_Switchboard_2026.html')
-    with open(html_path, 'w') as f:
+</html>
+'''
+
+    # Write HTML file
+    reports_out = os.path.join(PROJECT_DIR, "Reports_HTML")
+    os.makedirs(reports_out, exist_ok=True)
+    html_path = os.path.join(reports_out, f"report_{category}.html")
+    with open(html_path, 'w', encoding='utf-8') as f:
         f.write(html)
-    
-    print(f"Generated: {html_path}")
-    return html_path
+
+    print(f"  Charts generated: {len(all_charts)}")
+    print(f"  Saved HTML: {html_path}")
+    print(f"  Charts dir:  {CHARTS_DIR}")
+    print(f"  Include report_{category}.html and the charts/ folder together when sharing")
+
+
+def main():
+    """Entry point with auto-detect and CLI argument support."""
+    if len(sys.argv) > 1:
+        category = sys.argv[1]
+    else:
+        # Auto-detect category from available CSVs
+        if os.path.isdir(REPORTS_DIR):
+            available = set()
+            for fname in os.listdir(REPORTS_DIR):
+                if fname.endswith('_outcomes.csv'):
+                    available.add(fname.replace('_outcomes.csv', ''))
+            if available:
+                category = sorted(available)[0]
+            else:
+                print("No data CSVs found in Reports/Charts/. Run extract_html_data.py first.")
+                return
+        else:
+            print(f"Reports/Charts/ directory not found at {REPORTS_DIR}. Run extract_html_data.py first.")
+            return
+
+    print(f"Generating HTML dashboard for category: {category}")
+    generate_html(category)
+
 
 if __name__ == '__main__':
-    generate_html()
+    main()

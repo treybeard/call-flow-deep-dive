@@ -19,8 +19,6 @@ import io
 from collections import Counter, defaultdict
 from datetime import datetime
 
-sys.path.insert(0, '/Library/Python/3.9/lib/python/site-packages')
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSV_DIR = os.path.join(PROJECT_DIR, "CSV Files")
 CHARTS_DIR = os.path.join(PROJECT_DIR, "Reports", "Charts")
@@ -428,7 +426,8 @@ def main_wrapper(category):
     os.makedirs(CHARTS_DIR, exist_ok=True)
 
     # Generate outcomes CSV
-    write_csv(os.path.join(CHARTS_DIR, f'{prefix}_outcomes.csv'), extract_kpi_data(rows))
+    outcomes_data = extract_kpi_data(rows)
+    write_csv(os.path.join(CHARTS_DIR, f'{prefix}_outcomes.csv'), outcomes_data)
 
     # Generate duration CSV
     write_csv(os.path.join(CHARTS_DIR, f'{prefix}_duration.csv'), extract_duration_data(rows))
@@ -464,16 +463,12 @@ def main_wrapper(category):
     # Generate queue waits
     write_csv(os.path.join(CHARTS_DIR, f'{prefix}_queue_waits.csv'), extract_queue_waits(rows))
 
-    # Generate call outcomes (alias)
-    write_csv(os.path.join(CHARTS_DIR, f'{prefix}_call_outcomes.csv'), extract_kpi_data(rows))
-
     # Generate summary CSV
     total_calls = len(rows)
-    outcome_data = extract_kpi_data(rows)
 
     # Parse outcome lines into a dict for easy lookup
     outcome_rows_parsed = []
-    for line in outcome_data.strip().split('\n')[1:]:  # skip header
+    for line in outcomes_data.strip().split('\n')[1:]:  # skip header
         if line.strip():
             outcome_rows_parsed.append(dict(zip(['Month', 'Total', 'Successful', 'Failed', 'Abandoned', 'Success%', 'Fail%', 'Abandon%'], line.split(','))))
 
